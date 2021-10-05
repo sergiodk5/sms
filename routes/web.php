@@ -29,7 +29,7 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/anotherpage', [SwimmersController::class, 'index'])->middleware(['auth', 'verified'])->name('anotherpage');
+Route::get('/swimmers', [SwimmersController::class, 'index'])->middleware(['auth', 'verified'])->name('swimmers');
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

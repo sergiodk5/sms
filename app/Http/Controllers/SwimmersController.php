@@ -16,7 +16,7 @@ class SwimmersController extends Controller
     public function index()
     {
         $swimmers = Swimmer::all();
-        return Inertia::render('Anotherpage', ['swimmers' => $swimmers]);
+        return Inertia::render('Swimmers', ['swimmers' => $swimmers]);
     }
 
     /**

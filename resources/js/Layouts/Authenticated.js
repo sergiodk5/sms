@@ -29,10 +29,10 @@ export default function Authenticated({ auth, header, children }) {
                                     Dashboard
                                 </NavLink>
                                 <NavLink
-                                    href={route("anotherpage")}
-                                    active={route().current("anotherpage")}
+                                    href={route("swimmers")}
+                                    active={route().current("swimmers")}
                                 >
-                                    An Other Link
+                                    Swimmers
                                 </NavLink>
                             </div>
                         </div>
