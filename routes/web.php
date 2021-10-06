@@ -1,20 +1,8 @@
 <?php
 
-use App\Http\Controllers\SwimmersController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -25,11 +13,14 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard')->middleware('auth', 'verified');
 
-Route::get('/swimmers', [SwimmersController::class, 'index'])->middleware(['auth', 'verified'])->name('swimmers');
-
+Route::get('dashboard/swimmers')->name('dashboard.swimmers')->uses('App\Http\Controllers\SwimmersController@index')->middleware('auth', 'verified');
+Route::get('dashboard/swimmers/create')->name('dashboard.swimmers.create')->uses('App\Http\Controllers\SwimmersController@create')->middleware('auth', 'verified');
+Route::post('dashboard/swimmers')->name('dashboard.swimmers.store')->uses('App\Http\Controllers\SwimmersController@store')->middleware('auth', 'verified');
+Route::get('dashboard/swimmers/{swimmer}/edit')->name('dashboard.swimmers.edit')->uses('App\Http\Controllers\SwimmersController@edit')->middleware('auth', 'verified');
+Route::put('dashboard/swimmers/{swimmer}')->name('dashboard.swimmers.update')->uses('App\Http\Controllers\SwimmersController@update')->middleware('auth', 'verified');
+Route::delete('dashboard/swimmers/{swimmer}')->name('dashboard.swimmers.destroy')->uses('App\Http\Controllers\SwimmersController@destroy')->middleware('auth', 'verified');
+Route::put('dashboard/swimmers/{swimmer}/restore')->name('ashboard.swimmers.restore')->uses('App\Http\Controllers\SwimmersController@restore')->middleware('auth', 'verified');
 
 require __DIR__ . '/auth.php';

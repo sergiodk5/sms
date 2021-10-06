@@ -1,20 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Authenticated from "@/Layouts/Authenticated";
-import { Head } from "@inertiajs/inertia-react";
+import { Head, Link } from "@inertiajs/inertia-react";
 
-const people = [
-    {
-        name: "Jane Cooper",
-        title: "Regional Paradigm Technician",
-        department: "Optimization",
-        role: "Admin",
-        email: "jane.cooper@example.com",
-        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-    },
-    // More people...
-];
-
-export default function Swimmers(props) {
+export default function Index(props) {
     const [swimmers, setSwimmers] = useState([]);
 
     useEffect(() => {
@@ -40,29 +28,125 @@ export default function Swimmers(props) {
         >
             <Head title="Swimmers" />
 
-            <div className="relative w-full max-w-md px-5 pb-4 pt-12 mx-auto rounded-md">
-                <div className="relative">
-                    <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+            {props.status && (
+                <div className="my-12 flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
+                    <div className="flex items-center justify-center w-12 bg-green-500">
                         <svg
-                            className="w-5 h-5 text-gray-400"
-                            viewBox="0 0 24 24"
-                            fill="none"
+                            className="w-6 h-6 text-white fill-current"
+                            viewBox="0 0 40 40"
+                            xmlns="http://www.w3.org/2000/svg"
                         >
-                            <path
-                                d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            ></path>
+                            <path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
                         </svg>
-                    </span>
+                    </div>
 
-                    <input
-                        type="text"
-                        className="w-full px-6 pr-3 pl-10 text-left text-xs font-medium text-gray-500 uppercase bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
-                        placeholder="Search"
-                    />
+                    <div className="px-4 py-2 -mx-3">
+                        <div className="mx-3">
+                            <span className="font-semibold text-green-500 dark:text-green-400">
+                                Success
+                            </span>
+                            <p className="text-sm text-gray-600 dark:text-gray-200">
+                                {props.status}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            <div className="max-w-7xl pt-12 mx-auto sm:px-6 lg:px-8">
+                <div className="flex flex-col">
+                    <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                            <div className="flex justify-between items-center px-4 py-5 sm:p-6">
+                                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+                                    List of Swimmers
+                                </h2>
+                                <Link
+                                    href={route("dashboard.swimmers.create")}
+                                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                >
+                                    Add New Swimmer
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="max-w-7xl py-4 mx-auto sm:px-6 lg:px-8">
+                <div className="flex flex-col">
+                    <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                            <div className="overflow-hidden bg-white border-b border-gray-200 sm:rounded-lg">
+                                <div className="grid grid-cols-12 gap-6 px-4 py-5 sm:p-6">
+                                    <div className="col-span-12 sm:col-span-4">
+                                        <input
+                                            type="text"
+                                            className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
+                                            placeholder="First Name"
+                                        />
+                                    </div>
+                                    <div className="col-span-12 sm:col-span-4">
+                                        <input
+                                            type="text"
+                                            className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
+                                            placeholder="Last Name"
+                                        />
+                                    </div>
+                                    <div className="col-span-12 sm:col-span-4">
+                                        <input
+                                            type="text"
+                                            className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
+                                            placeholder="Guardian's name"
+                                        />
+                                    </div>
+                                    <div className="col-span-12 sm:col-span-4">
+                                        <input
+                                            type="text"
+                                            className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
+                                            placeholder="Phone"
+                                        />
+                                    </div>
+                                    <div className="col-span-12 sm:col-span-4">
+                                        <input
+                                            type="text"
+                                            className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
+                                            placeholder="Mobile"
+                                        />
+                                    </div>
+                                    <div className="col-span-12 sm:col-span-4">
+                                        <input
+                                            type="text"
+                                            className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
+                                            placeholder="Email"
+                                        />
+                                    </div>
+
+                                    <div className="col-span-12 sm:col-span-4">
+                                        <input
+                                            type="text"
+                                            className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
+                                            placeholder="Address"
+                                        />
+                                    </div>
+                                    <div className="col-span-12 sm:col-span-4">
+                                        <input
+                                            type="date"
+                                            className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
+                                            placeholder="dd-mm-yyyy"
+                                        />
+                                    </div>
+                                    <div className="col-span-12 sm:col-span-4">
+                                        <input
+                                            type="date"
+                                            className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
+                                            placeholder="to"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -175,12 +259,15 @@ export default function Swimmers(props) {
                                                                 }
                                                             </td>
                                                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                                <a
-                                                                    href="#"
+                                                                <Link
+                                                                    href={route(
+                                                                        "dashboard.swimmers.edit",
+                                                                        swimmer.id
+                                                                    )}
                                                                     className="text-indigo-600 hover:text-indigo-900"
                                                                 >
                                                                     Edit
-                                                                </a>
+                                                                </Link>
                                                             </td>
                                                         </tr>
                                                     )
