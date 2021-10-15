@@ -3685,7 +3685,7 @@ function ValidationErrors(_ref) {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "mx-3",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-          "class": "font-semibold text-red-500 dark:text-red-400",
+          className: "font-semibold text-red-500 dark:text-red-400",
           children: "Whoops! Something went wrong."
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("ul", {
           className: "mt-3 list-disc list-inside text-sm text-gray-600 dark:text-gray-200",
@@ -4874,6 +4874,7 @@ function Edit(props) {
       data = _useForm.data,
       setData = _useForm.setData,
       put = _useForm.put,
+      destroy = _useForm["delete"],
       errors = _useForm.errors;
 
   var onHandleChange = function onHandleChange(event) {
@@ -4883,6 +4884,14 @@ function Edit(props) {
   var submit = function submit(e) {
     e.preventDefault();
     put(route("dashboard.swimmers.update", props.swimmer.id));
+  };
+
+  var handleDelete = function handleDelete(e) {
+    e.preventDefault();
+
+    if (confirm('Are you sure that you want to delete this swimmer?')) {
+      destroy(route('dashboard.swimmers.destroy', props.swimmer.id));
+    }
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -5054,13 +5063,18 @@ function Edit(props) {
                       })]
                     })]
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-                  className: "px-4 py-3 bg-gray-50 text-right sm:px-6",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                  className: "px-4 py-3 bg-gray-50 sm:px-6 flex justify-between",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
                     type: "submit",
                     className: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
                     children: "Update"
-                  })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                    onClick: handleDelete,
+                    type: "button",
+                    className: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500",
+                    children: "Delete"
+                  })]
                 })]
               })
             })
@@ -5144,9 +5158,25 @@ function Index(props) {
     });
     return function () {
       setSwimmers([]);
-      setData(initialSearchData);
     };
   }, [props.swimmers]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    setData({
+      name: props.name ? props.name : "",
+      last: props.last ? props.last : "",
+      guardian: props.guardian ? props.guardian : "",
+      phone: props.phone ? props.phone : "",
+      mobile: props.mobile ? props.mobile : "",
+      email: props.email ? props.email : "",
+      address: props.address ? props.address : "",
+      datefrom: props.datefrom ? props.datefrom : "",
+      dateto: props.dateto ? props.dateto : "",
+      gender: props.gender ? props.gender : ""
+    });
+    return function () {
+      setData(initialSearchData);
+    };
+  }, [props]);
 
   function getYears(bd) {
     var dob = new Date(bd);

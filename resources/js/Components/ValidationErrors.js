@@ -16,7 +16,9 @@ export default function ValidationErrors({ errors }) {
 
                 <div className="px-4 py-2 -mx-3">
                     <div className="mx-3">
-                        <span class="font-semibold text-red-500 dark:text-red-400">Whoops! Something went wrong.</span>
+                        <span className="font-semibold text-red-500 dark:text-red-400">
+                            Whoops! Something went wrong.
+                        </span>
 
                         <ul className="mt-3 list-disc list-inside text-sm text-gray-600 dark:text-gray-200">
                             {Object.keys(errors).map(function (key, index) {

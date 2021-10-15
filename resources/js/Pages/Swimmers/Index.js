@@ -36,9 +36,27 @@ export default function Index(props) {
 
         return () => {
             setSwimmers([])
-            setData(initialSearchData);
         }
     }, [props.swimmers]);
+
+    useEffect(() => {
+        setData({
+            name: props.name ? props.name : "",
+            last: props.last ? props.last : "",
+            guardian: props.guardian ? props.guardian : "",
+            phone: props.phone ? props.phone : "",
+            mobile: props.mobile ? props.mobile : "",
+            email: props.email ? props.email : "",
+            address: props.address ? props.address : "",
+            datefrom: props.datefrom ? props.datefrom : "",
+            dateto: props.dateto ? props.dateto : "",
+            gender: props.gender ? props.gender : "",
+        });
+
+        return () => {
+            setData(initialSearchData);
+        };
+    }, [props]);
 
     function getYears(bd) {
         let dob = new Date(bd);

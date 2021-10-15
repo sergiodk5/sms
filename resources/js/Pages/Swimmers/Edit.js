@@ -4,7 +4,7 @@ import ValidationErrors from "@/Components/ValidationErrors";
 import { Head, useForm } from "@inertiajs/inertia-react";
 
 export default function Edit(props) {
-    const { data, setData, put, errors } = useForm({
+    const { data, setData, put, delete: destroy, errors } = useForm({
         name: props.swimmer.name || '',
         last: props.swimmer.last || '',
         dob: props.swimmer.dob || '',
@@ -25,6 +25,14 @@ export default function Edit(props) {
 
         put(route("dashboard.swimmers.update", props.swimmer.id));
     };
+
+    const handleDelete = (e) => {
+        e.preventDefault()
+
+        if (confirm('Are you sure that you want to delete this swimmer?')) {
+            destroy(route('dashboard.swimmers.destroy', props.swimmer.id))
+        }
+    }
 
     return (
         <Authenticated
@@ -216,12 +224,20 @@ export default function Edit(props) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                                    <div className="px-4 py-3 bg-gray-50 sm:px-6 flex justify-between">
                                         <button
                                             type="submit"
                                             className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                         >
                                             Update
+                                        </button>
+
+                                        <button
+                                            onClick={handleDelete}
+                                            type="button"
+                                            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                                        >
+                                            Delete
                                         </button>
                                     </div>
                                 </div>

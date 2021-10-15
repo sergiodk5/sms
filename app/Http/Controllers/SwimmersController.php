@@ -138,11 +138,13 @@ class SwimmersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Swimmer  $swimmer
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Swimmer $swimmer)
     {
-        //
+        $swimmer->delete();
+
+        return Redirect::route('dashboard.swimmers')->with('status', 'Swimmer deleted.');
     }
 }
