@@ -13,14 +13,61 @@ class SwimmersController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $swimmers = Swimmer::all();
+        $name     = $request->has('name') && $request->name ? $request->name : null;
+        $last     = $request->has('last') && $request->last ? $request->last : null;
+        $gender   = $request->has('gender') && null !== $request->gender ? $request->gender : null;
+        $guardian = $request->has('guardian') && $request->guardian ? $request->guardian : null;
+        $phone    = $request->has('phone') && $request->phone ? $request->phone : null;
+        $mobile   = $request->has('mobile') && $request->mobile ? $request->mobile : null;
+        $email    = $request->has('email') && $request->email ? $request->email : null;
+        $address  = $request->has('address') && $request->address ? $request->address : null;
+        $datefrom = $request->has('datefrom') && $request->datefrom ? $request->datefrom : null;
+        $dateto   = $request->has('dateto') && $request->dateto ? $request->dateto : null;
+
+        $swimmers = Swimmer::when($name, function ($query) use ($name) {
+            return $query->where('name', 'like', '%' . $name . '%');
+        })->when($last, function ($query) use ($last) {
+            return $query->where('last', 'like', '%' . $last . '%');
+        })->when(null !== $gender, function ($query) use ($gender) {
+            return $query->where('gender', $gender);
+        })->when($guardian, function ($query) use ($guardian) {
+            return $query->where('guardian', 'like', '%' . $guardian . '%');
+        })->when($phone, function ($query) use ($phone) {
+            return $query->where('land', 'like', '%' . $phone . '%');
+        })->when($mobile, function ($query) use ($mobile) {
+            return $query->where('mobile', 'like', '%' . $mobile . '%');
+        })->when($email, function ($query) use ($email) {
+            return $query->where('email', 'like', '%' . $email . '%');
+        })->when($address, function ($query) use ($address) {
+            return $query->where('address', 'like', '%' . $address . '%');
+        })->when($datefrom && !$dateto, function ($query) use ($datefrom) {
+            return $query->whereYear('dob', $datefrom);
+        })->when($dateto && $datefrom, function ($query) use ($dateto, $datefrom) {
+            $from = $datefrom . '-00-00';
+            $to = $dateto . '-12-31';
+
+            return $query->whereBetween('dob', [$from, $to]);
+        })->get();
+
+
         return Inertia::render('Swimmers/Index', [
             'swimmers' => $swimmers,
-            'status' => session('status'),
+            'name'     => $name,
+            'last'     => $last,
+            'gender'   => $gender,
+            'guardian' => $guardian,
+            'phone'    => $phone,
+            'mobile'   => $mobile,
+            'email'    => $email,
+            'address'  => $address,
+            'datefrom' => $datefrom,
+            'dateto'   => $dateto,
+            'status'   => session('status'),
         ]);
     }
 

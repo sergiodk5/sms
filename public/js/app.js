@@ -4890,10 +4890,10 @@ function Edit(props) {
     errors: props.errors,
     header: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
       className: "font-semibold text-xl text-gray-800 leading-tight",
-      children: "Add New Swimmer"
+      children: "Edit Swimmer"
     }),
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.Head, {
-      title: "Add New Swimmer"
+      title: "Edit Swimmer"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_2__["default"], {
       errors: errors
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
@@ -5059,7 +5059,7 @@ function Edit(props) {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
                     type: "submit",
                     className: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
-                    children: "Create"
+                    children: "Update"
                   })
                 })]
               })
@@ -5105,14 +5105,47 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+var initialSearchData = {
+  name: "",
+  last: "",
+  guardian: "",
+  phone: "",
+  mobile: "",
+  email: "",
+  address: "",
+  datefrom: "",
+  dateto: "",
+  gender: ""
+};
 function Index(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       swimmers = _useState2[0],
       setSwimmers = _useState2[1];
 
+  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.useForm)(initialSearchData),
+      data = _useForm.data,
+      setData = _useForm.setData,
+      get = _useForm.get;
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     setSwimmers(props.swimmers);
+    setData({
+      name: props.name ? props.name : '',
+      last: props.last ? props.last : '',
+      guardian: props.guardian ? props.guardian : '',
+      phone: props.phone ? props.phone : '',
+      mobile: props.mobile ? props.mobile : '',
+      email: props.email ? props.email : '',
+      address: props.address ? props.address : '',
+      datefrom: props.datefrom ? props.datefrom : '',
+      dateto: props.dateto ? props.dateto : '',
+      gender: props.gender ? props.gender : ''
+    });
+    return function () {
+      setSwimmers([]);
+      setData(initialSearchData);
+    };
   }, [props.swimmers]);
 
   function getYears(bd) {
@@ -5122,6 +5155,15 @@ function Index(props) {
     var ageDate = new Date(ageDifMs);
     return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
+
+  var handleOnChange = function handleOnChange(event) {
+    setData(event.target.name, event.target.value);
+  };
+
+  var handleSearch = function handleSearch(e) {
+    e.preventDefault();
+    get(route("dashboard.swimmers"), data);
+  };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
     auth: props.auth,
@@ -5179,7 +5221,8 @@ function Index(props) {
           })
         })
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("form", {
+      onSubmit: handleSearch,
       className: "max-w-7xl py-4 mx-auto sm:px-6 lg:px-8",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "flex flex-col",
@@ -5187,75 +5230,183 @@ function Index(props) {
           className: "-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
             className: "py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "overflow-hidden bg-white border-b border-gray-200 sm:rounded-lg",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+                className: "px-4 py-5 sm:p-6 font-semibold text-xl text-gray-800 leading-tight",
+                children: "Search"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                 className: "grid grid-cols-12 gap-6 px-4 py-5 sm:p-6",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                   className: "col-span-12 sm:col-span-4",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                    htmlFor: "name",
+                    className: "block text-sm font-medium text-gray-700",
+                    children: "Name"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                     type: "text",
+                    id: "name",
+                    name: "name",
+                    onChange: handleOnChange,
+                    value: data.name,
                     className: "w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none",
                     placeholder: "First Name"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                   className: "col-span-12 sm:col-span-4",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                    htmlFor: "last",
+                    className: "block text-sm font-medium text-gray-700",
+                    children: "Last"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                     type: "text",
+                    id: "last",
+                    name: "last",
+                    onChange: handleOnChange,
+                    value: data.last,
                     className: "w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none",
                     placeholder: "Last Name"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                   className: "col-span-12 sm:col-span-4",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                    htmlFor: "gender",
+                    className: "block text-sm font-medium text-gray-700",
+                    children: "Gender"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
+                    id: "gender",
+                    name: "gender",
+                    onChange: handleOnChange,
+                    value: data.gender,
+                    className: "w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                      children: "Select Gender"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                      value: "1",
+                      children: "Male"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                      value: "0",
+                      children: "Female"
+                    })]
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                  className: "col-span-12 sm:col-span-6",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                    htmlFor: "guardian",
+                    className: "block text-sm font-medium text-gray-700",
+                    children: "Guardian"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    id: "guardian",
+                    name: "guardian",
+                    onChange: handleOnChange,
+                    value: data.guardian,
                     type: "text",
                     className: "w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none",
                     placeholder: "Guardian's name"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                  className: "col-span-12 sm:col-span-4",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                    type: "text",
-                    className: "w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none",
-                    placeholder: "Phone"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                  className: "col-span-12 sm:col-span-4",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                    type: "text",
-                    className: "w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none",
-                    placeholder: "Mobile"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                  className: "col-span-12 sm:col-span-4",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                    type: "text",
-                    className: "w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none",
-                    placeholder: "Email"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                  className: "col-span-12 sm:col-span-4",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                  className: "col-span-12 sm:col-span-6",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                    htmlFor: "address",
+                    className: "block text-sm font-medium text-gray-700",
+                    children: "Address"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    id: "address",
+                    name: "address",
+                    onChange: handleOnChange,
+                    value: data.address,
                     type: "text",
                     className: "w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none",
                     placeholder: "Address"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                   className: "col-span-12 sm:col-span-4",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                    type: "date",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                    htmlFor: "phone",
+                    className: "block text-sm font-medium text-gray-700",
+                    children: "Phone"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    id: "phone",
+                    name: "phone",
+                    onChange: handleOnChange,
+                    value: data.phone,
+                    type: "text",
                     className: "w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none",
-                    placeholder: "dd-mm-yyyy"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                    placeholder: "Phone"
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                   className: "col-span-12 sm:col-span-4",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                    type: "date",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                    htmlFor: "mobile",
+                    className: "block text-sm font-medium text-gray-700",
+                    children: "Mobile"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    id: "mobile",
+                    name: "mobile",
+                    onChange: handleOnChange,
+                    value: data.mobile,
+                    type: "text",
                     className: "w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none",
-                    placeholder: "to"
+                    placeholder: "Mobile"
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                  className: "col-span-12 sm:col-span-4",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                    htmlFor: "email",
+                    className: "block text-sm font-medium text-gray-700",
+                    children: "Email"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    id: "email",
+                    name: "email",
+                    onChange: handleOnChange,
+                    value: data.email,
+                    type: "text",
+                    className: "w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none",
+                    placeholder: "Email"
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                  className: "col-span-12 sm:col-span-2",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                    htmlFor: "datefrom",
+                    className: "block text-sm font-medium text-gray-700",
+                    children: "Year From"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    id: "datefrom",
+                    name: "datefrom",
+                    onChange: handleOnChange,
+                    value: data.datefrom,
+                    type: "number",
+                    className: "w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none",
+                    placeholder: "Year from",
+                    min: "1970",
+                    max: new Date().getFullYear()
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                  className: "col-span-12 sm:col-span-2",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                    htmlFor: "dateto",
+                    className: "block text-sm font-medium text-gray-700",
+                    children: "Year To"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    id: "dateto",
+                    name: "dateto",
+                    onChange: handleOnChange,
+                    value: data.dateto,
+                    type: "number",
+                    className: "w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none",
+                    placeholder: "Year to",
+                    min: "1970",
+                    max: new Date().getFullYear()
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  className: "col-span-12 text-right",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                    type: "submit",
+                    className: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+                    children: "Search"
                   })
                 })]
-              })
+              })]
             })
           })
         })
@@ -5331,7 +5482,7 @@ function Index(props) {
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                           className: "px-6 py-4 whitespace-nowrap",
                           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                            className: "px-2 inline-flex text-xs leading-5 font-semibold rounded-full ".concat(swimmer.gender ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"),
+                            className: "px-2 inline-flex text-xs leading-5 font-semibold rounded-full ".concat(swimmer.gender ? "bg-blue-100 text-blue-800" : "bg-pink-100 text-pink-800"),
                             children: swimmer.gender ? "male" : "female"
                           })
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("td", {

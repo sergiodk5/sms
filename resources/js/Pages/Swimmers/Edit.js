@@ -32,11 +32,11 @@ export default function Edit(props) {
             errors={props.errors}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Add New Swimmer
+                    Edit Swimmer
                 </h2>
             }
         >
-            <Head title="Add New Swimmer" />
+            <Head title="Edit Swimmer" />
 
             <ValidationErrors errors={errors} />
 
@@ -221,7 +221,7 @@ export default function Edit(props) {
                                             type="submit"
                                             className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                         >
-                                            Create
+                                            Update
                                         </button>
                                     </div>
                                 </div>

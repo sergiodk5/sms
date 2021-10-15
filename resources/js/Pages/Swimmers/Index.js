@@ -1,12 +1,43 @@
 import React, { useState, useEffect } from "react";
 import Authenticated from "@/Layouts/Authenticated";
-import { Head, Link } from "@inertiajs/inertia-react";
+import { Head, Link, useForm } from "@inertiajs/inertia-react";
+
+const initialSearchData = {
+    name: "",
+    last: "",
+    guardian: "",
+    phone: "",
+    mobile: "",
+    email: "",
+    address: "",
+    datefrom: "",
+    dateto: "",
+    gender: "",
+};
 
 export default function Index(props) {
     const [swimmers, setSwimmers] = useState([]);
+    const { data, setData, get } = useForm(initialSearchData);
 
     useEffect(() => {
         setSwimmers(props.swimmers);
+        setData({
+            name: props.name ? props.name : '',
+            last: props.last ? props.last : '',
+            guardian: props.guardian ? props.guardian : '',
+            phone: props.phone ? props.phone : '',
+            mobile: props.mobile ? props.mobile : '',
+            email: props.email ? props.email : '',
+            address: props.address ? props.address : '',
+            datefrom: props.datefrom ? props.datefrom : '',
+            dateto: props.dateto ? props.dateto : '',
+            gender: props.gender ? props.gender : '',
+        });
+
+        return () => {
+            setSwimmers([])
+            setData(initialSearchData);
+        }
     }, [props.swimmers]);
 
     function getYears(bd) {
@@ -15,6 +46,16 @@ export default function Index(props) {
         let ageDifMs = today - dob;
         var ageDate = new Date(ageDifMs);
         return Math.abs(ageDate.getUTCFullYear() - 1970);
+    }
+
+    const handleOnChange = (event) => {
+        setData(event.target.name, event.target.value);
+    };
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+
+        get(route("dashboard.swimmers"), data);
     }
     return (
         <Authenticated
@@ -73,82 +114,212 @@ export default function Index(props) {
                 </div>
             </div>
 
-            <div className="max-w-7xl py-4 mx-auto sm:px-6 lg:px-8">
+            <form
+                onSubmit={handleSearch}
+                className="max-w-7xl py-4 mx-auto sm:px-6 lg:px-8"
+            >
                 <div className="flex flex-col">
                     <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                             <div className="overflow-hidden bg-white border-b border-gray-200 sm:rounded-lg">
+                                <h3 className="px-4 py-5 sm:p-6 font-semibold text-xl text-gray-800 leading-tight">
+                                    Search
+                                </h3>
                                 <div className="grid grid-cols-12 gap-6 px-4 py-5 sm:p-6">
                                     <div className="col-span-12 sm:col-span-4">
+                                        <label
+                                            htmlFor="name"
+                                            className="block text-sm font-medium text-gray-700"
+                                        >
+                                            Name
+                                        </label>
                                         <input
                                             type="text"
+                                            id="name"
+                                            name="name"
+                                            onChange={handleOnChange}
+                                            value={data.name}
                                             className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
                                             placeholder="First Name"
                                         />
                                     </div>
                                     <div className="col-span-12 sm:col-span-4">
+                                        <label
+                                            htmlFor="last"
+                                            className="block text-sm font-medium text-gray-700"
+                                        >
+                                            Last
+                                        </label>
                                         <input
                                             type="text"
+                                            id="last"
+                                            name="last"
+                                            onChange={handleOnChange}
+                                            value={data.last}
                                             className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
                                             placeholder="Last Name"
                                         />
                                     </div>
                                     <div className="col-span-12 sm:col-span-4">
+                                        <label
+                                            htmlFor="gender"
+                                            className="block text-sm font-medium text-gray-700"
+                                        >
+                                            Gender
+                                        </label>
+                                        <select
+                                            id="gender"
+                                            name="gender"
+                                            onChange={handleOnChange}
+                                            value={data.gender}
+                                            className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
+                                        >
+                                            <option>Select Gender</option>
+                                            <option value="1">Male</option>
+                                            <option value="0">Female</option>
+                                        </select>
+                                    </div>
+
+                                    <div className="col-span-12 sm:col-span-6">
+                                        <label
+                                            htmlFor="guardian"
+                                            className="block text-sm font-medium text-gray-700"
+                                        >
+                                            Guardian
+                                        </label>
                                         <input
+                                            id="guardian"
+                                            name="guardian"
+                                            onChange={handleOnChange}
+                                            value={data.guardian}
                                             type="text"
                                             className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
                                             placeholder="Guardian's name"
                                         />
                                     </div>
-                                    <div className="col-span-12 sm:col-span-4">
+                                    <div className="col-span-12 sm:col-span-6">
+                                        <label
+                                            htmlFor="address"
+                                            className="block text-sm font-medium text-gray-700"
+                                        >
+                                            Address
+                                        </label>
                                         <input
+                                            id="address"
+                                            name="address"
+                                            onChange={handleOnChange}
+                                            value={data.address}
+                                            type="text"
+                                            className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
+                                            placeholder="Address"
+                                        />
+                                    </div>
+
+                                    <div className="col-span-12 sm:col-span-4">
+                                        <label
+                                            htmlFor="phone"
+                                            className="block text-sm font-medium text-gray-700"
+                                        >
+                                            Phone
+                                        </label>
+                                        <input
+                                            id="phone"
+                                            name="phone"
+                                            onChange={handleOnChange}
+                                            value={data.phone}
                                             type="text"
                                             className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
                                             placeholder="Phone"
                                         />
                                     </div>
                                     <div className="col-span-12 sm:col-span-4">
+                                        <label
+                                            htmlFor="mobile"
+                                            className="block text-sm font-medium text-gray-700"
+                                        >
+                                            Mobile
+                                        </label>
                                         <input
+                                            id="mobile"
+                                            name="mobile"
+                                            onChange={handleOnChange}
+                                            value={data.mobile}
                                             type="text"
                                             className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
                                             placeholder="Mobile"
                                         />
                                     </div>
                                     <div className="col-span-12 sm:col-span-4">
+                                        <label
+                                            htmlFor="email"
+                                            className="block text-sm font-medium text-gray-700"
+                                        >
+                                            Email
+                                        </label>
                                         <input
+                                            id="email"
+                                            name="email"
+                                            onChange={handleOnChange}
+                                            value={data.email}
                                             type="text"
                                             className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
                                             placeholder="Email"
                                         />
                                     </div>
 
-                                    <div className="col-span-12 sm:col-span-4">
+                                    <div className="col-span-12 sm:col-span-2">
+                                        <label
+                                            htmlFor="datefrom"
+                                            className="block text-sm font-medium text-gray-700"
+                                        >
+                                            Year From
+                                        </label>
                                         <input
-                                            type="text"
+                                            id="datefrom"
+                                            name="datefrom"
+                                            onChange={handleOnChange}
+                                            value={data.datefrom}
+                                            type="number"
                                             className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
-                                            placeholder="Address"
+                                            placeholder="Year from"
+                                            min="1970"
+                                            max={new Date().getFullYear()}
                                         />
                                     </div>
-                                    <div className="col-span-12 sm:col-span-4">
+                                    <div className="col-span-12 sm:col-span-2">
+                                        <label
+                                            htmlFor="dateto"
+                                            className="block text-sm font-medium text-gray-700"
+                                        >
+                                            Year To
+                                        </label>
                                         <input
-                                            type="date"
+                                            id="dateto"
+                                            name="dateto"
+                                            onChange={handleOnChange}
+                                            value={data.dateto}
+                                            type="number"
                                             className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
-                                            placeholder="dd-mm-yyyy"
+                                            placeholder="Year to"
+                                            min="1970"
+                                            max={new Date().getFullYear()}
                                         />
                                     </div>
-                                    <div className="col-span-12 sm:col-span-4">
-                                        <input
-                                            type="date"
-                                            className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
-                                            placeholder="to"
-                                        />
+
+                                    <div className="col-span-12 text-right">
+                                        <button
+                                            type="submit"
+                                            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        >
+                                            Search
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
 
             <div className="pt-4 pb-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -232,8 +403,8 @@ export default function Index(props) {
                                                                 <span
                                                                     className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                                                                         swimmer.gender
-                                                                            ? "bg-green-100 text-green-800"
-                                                                            : "bg-red-100 text-red-800"
+                                                                            ? "bg-blue-100 text-blue-800"
+                                                                            : "bg-pink-100 text-pink-800"
                                                                     }`}
                                                                 >
                                                                     {swimmer.gender
