@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Group;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -24,6 +25,7 @@ class CreateSwimmersTable extends Migration
             $table->string('address')->nullable();
             $table->date('dob')->nullable();
             $table->boolean('gender');
+            $table->foreignIdFor(Group::class)->nullable()->constrained();
             $table->timestamps();
             $table->softDeletes();
         });

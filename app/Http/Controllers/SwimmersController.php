@@ -52,8 +52,22 @@ class SwimmersController extends Controller
             $to = $dateto . '-12-31';
 
             return $query->whereBetween('dob', [$from, $to]);
-        })->get();
-
+        })->with('group')->get()->transform(function ($swimmer) {
+            return [
+                    'id' => $swimmer->id,
+                    'name' => $swimmer->name,
+                    'last' => $swimmer->last,
+                    'guardian' => $swimmer->guardian,
+                    'land' => $swimmer->land,
+                    'mobile' => $swimmer->mobile,
+                    'email' => $swimmer->email,
+                    'address' => $swimmer->address,
+                    'dob' => $swimmer->dob,
+                    'gender' => $swimmer->gender,
+                    'groupId' => $swimmer->group_id,
+                    'groupName' => $swimmer->group->name,
+                ];
+        });
 
         return Inertia::render('Swimmers/Index', [
             'swimmers' => $swimmers,

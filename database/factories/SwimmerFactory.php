@@ -34,6 +34,7 @@ class SwimmerFactory extends Factory
             'address'  => $this->faker->address(),
             'dob'      => $this->faker->dateTimeThisCentury->format('Y-m-d'),
             'gender'   => $genderVal,
+            'group_id' => $this->faker->numberBetween(1, 10),
         ];
     }
 }
