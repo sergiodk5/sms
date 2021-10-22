@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
 
-const Index = ({ auth, errors, status }) => {
+const Index = ({ auth, errors, status, competitions }) => {
+    console.log(competitions);
     return (
         <Authenticated
             auth={auth}
@@ -49,7 +50,9 @@ const Index = ({ auth, errors, status }) => {
                                     List of Competitions
                                 </h2>
                                 <Link
-                                    href={route("dashboard.swimmers.create")}
+                                    href={route(
+                                        "dashboard.competitions.create"
+                                    )}
                                     className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                 >
                                     Add New Competition
@@ -59,8 +62,83 @@ const Index = ({ auth, errors, status }) => {
                     </div>
                 </div>
             </div>
+
+            <div className="pt-4 pb-12">
+                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    <div className="flex flex-col">
+                        <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                    {0 < competitions.length && (
+                                        <table className="min-w-full divide-y divide-gray-200">
+                                            <thead className="bg-gray-50">
+                                                <tr>
+                                                    <th
+                                                        scope="col"
+                                                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                                    >
+                                                        Competition
+                                                    </th>
+                                                    <th
+                                                        scope="col"
+                                                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                                    >
+                                                        Date
+                                                    </th>
+                                                    <th
+                                                        scope="col"
+                                                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                                    >
+                                                        Days
+                                                    </th>
+                                                    <th
+                                                        scope="col"
+                                                        className="relative px-6 py-3"
+                                                    >
+                                                        <span className="sr-only">
+                                                            Edit
+                                                        </span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody className="bg-white divide-y divide-gray-200">
+                                                {competitions.map(
+                                                    (cmp, index) => (
+                                                        <tr key={index}>
+                                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                                {cmp.title}
+                                                            </td>
+                                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                                {cmp.date}
+                                                            </td>
+                                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                                {cmp.duration}
+                                                            </td>
+                                                            <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                                <Link
+                                                                    href={route(
+                                                                        "dashboard.competitions.edit",
+                                                                        cmp.id
+                                                                    )}
+                                                                    className="text-indigo-600 hover:text-indigo-900"
+                                                                >
+                                                                    Edit
+                                                                </Link>
+                                                            </td>
+                                                        </tr>
+                                                    )
+                                                )}
+                                            </tbody>
+                                        </table>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </Authenticated>
     );
 };
 
-export default Index
+export default Index;

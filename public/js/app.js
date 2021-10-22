@@ -3778,6 +3778,10 @@ function Authenticated(_ref) {
                 href: route("dashboard.swimmers"),
                 active: route().current("dashboard.swimmers"),
                 children: "Swimmers"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                href: route("dashboard.competitions"),
+                active: route().current("dashboard.competitions"),
+                children: "Competitions"
               })]
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
@@ -4575,7 +4579,9 @@ __webpack_require__.r(__webpack_exports__);
 var Index = function Index(_ref) {
   var auth = _ref.auth,
       errors = _ref.errors,
-      status = _ref.status;
+      status = _ref.status,
+      competitions = _ref.competitions;
+  console.log(competitions);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
     auth: auth,
     errors: errors,
@@ -4624,10 +4630,78 @@ var Index = function Index(_ref) {
                 className: "font-semibold text-xl text-gray-800 leading-tight",
                 children: "List of Competitions"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
-                href: route("dashboard.swimmers.create"),
+                href: route("dashboard.competitions.create"),
                 className: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
                 children: "Add New Competition"
               })]
+            })
+          })
+        })
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "pt-4 pb-12",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "max-w-7xl mx-auto sm:px-6 lg:px-8",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "flex flex-col",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                className: "shadow overflow-hidden border-b border-gray-200 sm:rounded-lg",
+                children: 0 < competitions.length && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("table", {
+                  className: "min-w-full divide-y divide-gray-200",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("thead", {
+                    className: "bg-gray-50",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
+                        scope: "col",
+                        className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
+                        children: "Competition"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
+                        scope: "col",
+                        className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
+                        children: "Date"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
+                        scope: "col",
+                        className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
+                        children: "Days"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
+                        scope: "col",
+                        className: "relative px-6 py-3",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                          className: "sr-only",
+                          children: "Edit"
+                        })
+                      })]
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tbody", {
+                    className: "bg-white divide-y divide-gray-200",
+                    children: competitions.map(function (cmp, index) {
+                      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                          className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500",
+                          children: cmp.title
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                          className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500",
+                          children: cmp.date
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                          className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500",
+                          children: cmp.duration
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                          className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+                            href: route("dashboard.competitions.edit", cmp.id),
+                            className: "text-indigo-600 hover:text-indigo-900",
+                            children: "Edit"
+                          })
+                        })]
+                      }, index);
+                    })
+                  })]
+                })
+              })
             })
           })
         })
@@ -5234,16 +5308,16 @@ function Index(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     setSwimmers(props.swimmers);
     setData({
-      name: props.name ? props.name : '',
-      last: props.last ? props.last : '',
-      guardian: props.guardian ? props.guardian : '',
-      phone: props.phone ? props.phone : '',
-      mobile: props.mobile ? props.mobile : '',
-      email: props.email ? props.email : '',
-      address: props.address ? props.address : '',
-      datefrom: props.datefrom ? props.datefrom : '',
-      dateto: props.dateto ? props.dateto : '',
-      gender: props.gender ? props.gender : ''
+      name: props.name ? props.name : "",
+      last: props.last ? props.last : "",
+      guardian: props.guardian ? props.guardian : "",
+      phone: props.phone ? props.phone : "",
+      mobile: props.mobile ? props.mobile : "",
+      email: props.email ? props.email : "",
+      address: props.address ? props.address : "",
+      datefrom: props.datefrom ? props.datefrom : "",
+      dateto: props.dateto ? props.dateto : "",
+      gender: props.gender ? props.gender : ""
     });
     return function () {
       setSwimmers([]);

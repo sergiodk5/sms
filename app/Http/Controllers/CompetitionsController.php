@@ -13,7 +13,7 @@ class CompetitionsController extends Controller
 {
     public function index(): InertiaResponse
     {
-        $competitions = Competition::all();
+        $competitions = Competition::with('events', 'events.swimmers')->get();
 
         return Inertia::render('Competitions/Index', ['competitions' => $competitions]);
     }

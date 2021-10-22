@@ -36,6 +36,14 @@ export default function Authenticated({ auth, header, children }) {
                                 >
                                     Swimmers
                                 </NavLink>
+                                <NavLink
+                                    href={route("dashboard.competitions")}
+                                    active={route().current(
+                                        "dashboard.competitions"
+                                    )}
+                                >
+                                    Competitions
+                                </NavLink>
                             </div>
                         </div>
 
