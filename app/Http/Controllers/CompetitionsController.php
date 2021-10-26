@@ -13,7 +13,7 @@ class CompetitionsController extends Controller
 {
     public function index(): InertiaResponse
     {
-        $competitions = Competition::with('events', 'events.swimmers')->get();
+        $competitions = Competition::all();
 
         return Inertia::render('Competitions/Index', ['competitions' => $competitions]);
     }
@@ -25,6 +25,18 @@ class CompetitionsController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        $request->validate([
+            'title'      => 'required',
+            'date_start' => ['nullable', 'date'],
+            'date_end'   => ['nullable', 'date'],
+        ]);
+
+        Competition::create([
+            'title'      => $request->title,
+            'date_start' => $request->date_start,
+            'date_end'   => $request->date_end,
+        ]);
+
         return Redirect::route('dashboard.competitions')->with('status', 'Competition created.');
     }
 
@@ -46,6 +58,18 @@ class CompetitionsController extends Controller
 
     public function update(Request $request, Competition $competition): RedirectResponse
     {
+        $request->validate([
+            'title'      => 'required',
+            'date_start' => ['nullable', 'date'],
+            'date_end'   => ['nullable', 'date'],
+        ]);
+
+        $competition->title      = $request->title;
+        $competition->date_start = $request->date_start;
+        $competition->date_end   = $request->date_end;
+
+        $competition->update();
+
         return Redirect::route('dashboard.competitions')->with('status', 'Competition updated.');
     }
 

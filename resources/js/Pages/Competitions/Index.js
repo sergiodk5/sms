@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Authenticated from "@/Layouts/Authenticated";
-import { Head, Link, useForm } from "@inertiajs/inertia-react";
+import { Head, Link } from "@inertiajs/inertia-react";
 
 const Index = ({ auth, errors, status, competitions }) => {
-    console.log(competitions);
     return (
         <Authenticated
             auth={auth}
@@ -83,13 +82,13 @@ const Index = ({ auth, errors, status, competitions }) => {
                                                         scope="col"
                                                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                                     >
-                                                        Date
+                                                        Starts
                                                     </th>
                                                     <th
                                                         scope="col"
                                                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                                     >
-                                                        Days
+                                                        Ends
                                                     </th>
                                                     <th
                                                         scope="col"
@@ -109,10 +108,10 @@ const Index = ({ auth, errors, status, competitions }) => {
                                                                 {cmp.title}
                                                             </td>
                                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                                {cmp.date}
+                                                                {cmp.date_start}
                                                             </td>
                                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                                {cmp.duration}
+                                                                {cmp.date_start}
                                                             </td>
                                                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                                 <Link
@@ -122,7 +121,30 @@ const Index = ({ auth, errors, status, competitions }) => {
                                                                     )}
                                                                     className="text-indigo-600 hover:text-indigo-900"
                                                                 >
-                                                                    Edit
+                                                                    <svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        className="h-6 w-6"
+                                                                        fill="none"
+                                                                        viewBox="0 0 24 24"
+                                                                        stroke="currentColor"
+                                                                    >
+                                                                        <path
+                                                                            strokeLinecap="round"
+                                                                            strokeLinejoin="round"
+                                                                            strokeWidth={
+                                                                                2
+                                                                            }
+                                                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                                                        />
+                                                                        <path
+                                                                            strokeLinecap="round"
+                                                                            strokeLinejoin="round"
+                                                                            strokeWidth={
+                                                                                2
+                                                                            }
+                                                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                                                        />
+                                                                    </svg>
                                                                 </Link>
                                                             </td>
                                                         </tr>

@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminUserSeeder::class,
             GroupTableSeeder::class,
+            EventsTableSeeder::class,
         ]);
 
         \App\Models\Swimmer::factory(10)->create();

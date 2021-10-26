@@ -147,24 +147,6 @@ export default function Index(props) {
                                     Search
                                 </h3>
                                 <div className="grid grid-cols-12 gap-6 px-4 py-5 sm:p-6">
-                                    <div className="col-span-12">
-                                        <label
-                                            htmlFor="register_number"
-                                            className="block text-sm font-medium text-gray-700"
-                                        >
-                                            Register Number
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="register_number"
-                                            name="register_number"
-                                            onChange={handleOnChange}
-                                            value={data.register_number}
-                                            className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
-                                            placeholder="Register Number"
-                                        />
-                                    </div>
-
                                     <div className="col-span-12 sm:col-span-4">
                                         <label
                                             htmlFor="name"
@@ -306,7 +288,7 @@ export default function Index(props) {
                                         />
                                     </div>
 
-                                    <div className="col-span-12 sm:col-span-2">
+                                    <div className="col-span-12 sm:col-span-4">
                                         <label
                                             htmlFor="datefrom"
                                             className="block text-sm font-medium text-gray-700"
@@ -325,7 +307,7 @@ export default function Index(props) {
                                             max={new Date().getFullYear()}
                                         />
                                     </div>
-                                    <div className="col-span-12 sm:col-span-2">
+                                    <div className="col-span-12 sm:col-span-4">
                                         <label
                                             htmlFor="dateto"
                                             className="block text-sm font-medium text-gray-700"
@@ -342,6 +324,23 @@ export default function Index(props) {
                                             placeholder="Year to"
                                             min="1970"
                                             max={new Date().getFullYear()}
+                                        />
+                                    </div>
+                                    <div className="col-span-12 sm:col-span-4">
+                                        <label
+                                            htmlFor="register_number"
+                                            className="block text-sm font-medium text-gray-700"
+                                        >
+                                            Register Number
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="register_number"
+                                            name="register_number"
+                                            onChange={handleOnChange}
+                                            value={data.register_number}
+                                            className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
+                                            placeholder="Register Number"
                                         />
                                     </div>
 

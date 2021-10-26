@@ -3346,6 +3346,135 @@ function Checkbox(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/Components/CompetitionsForm.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/Components/CompetitionsForm.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+var CompetitionsForm = function CompetitionsForm(_ref) {
+  var title = _ref.title,
+      date_start = _ref.date_start,
+      date_end = _ref.date_end,
+      submit = _ref.submit,
+      setData = _ref.setData,
+      buttonName = _ref.buttonName,
+      hasDelete = _ref.hasDelete,
+      shouldDelete = _ref.shouldDelete;
+
+  var onHandleChange = function onHandleChange(event) {
+    setData(event.target.name, event.target.value);
+  };
+
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    submit(e);
+  };
+
+  var handleDelete = function handleDelete(e) {
+    e.preventDefault();
+    shouldDelete(e);
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: "py-12",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "max-w-7xl mx-auto sm:px-6 lg:px-8",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "flex flex-col",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("form", {
+            onSubmit: handleSubmit,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "shadow overflow-hidden sm:rounded-md",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                className: "px-4 py-5 bg-white sm:p-6",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                  className: "grid grid-cols-12 gap-6",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                    className: "col-span-12 sm:col-span-6",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                      htmlFor: "title",
+                      className: "block text-sm font-medium text-gray-700",
+                      children: "Event"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                      type: "text",
+                      name: "title",
+                      id: "title",
+                      autoComplete: "competition-name",
+                      value: title,
+                      onChange: onHandleChange,
+                      className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                    className: "col-span-12 sm:col-span-3",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                      htmlFor: "date_start",
+                      className: "block text-sm font-medium text-gray-700",
+                      children: "Starts"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                      type: "date",
+                      name: "date_start",
+                      id: "date_start",
+                      autoComplete: "competition-date_start",
+                      value: date_start,
+                      onChange: onHandleChange,
+                      className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                    className: "col-span-12 sm:col-span-3",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                      htmlFor: "date_end",
+                      className: "block text-sm font-medium text-gray-700",
+                      children: "Ends"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                      type: "date",
+                      name: "date_end",
+                      id: "date_end",
+                      autoComplete: "competition-date_end",
+                      value: date_end,
+                      onChange: onHandleChange,
+                      className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                    })]
+                  })]
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "px-4 py-3 bg-gray-50 sm:px-6 ".concat(hasDelete ? "flex justify-between" : "text-right"),
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+                  type: "submit",
+                  className: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+                  children: buttonName
+                }), hasDelete && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+                  onClick: handleDelete,
+                  type: "button",
+                  className: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500",
+                  children: "Delete"
+                })]
+              })]
+            })
+          })
+        })
+      })
+    })
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CompetitionsForm);
+
+/***/ }),
+
 /***/ "./resources/js/Components/Dropdown.js":
 /*!*********************************************!*\
   !*** ./resources/js/Components/Dropdown.js ***!
@@ -4555,6 +4684,153 @@ function VerifyEmail(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Competitions/Create.js":
+/*!***************************************************!*\
+  !*** ./resources/js/Pages/Competitions/Create.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Layouts/Authenticated */ "./resources/js/Layouts/Authenticated.js");
+/* harmony import */ var _Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/ValidationErrors */ "./resources/js/Components/ValidationErrors.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _Components_CompetitionsForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/CompetitionsForm */ "./resources/js/Components/CompetitionsForm.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+var Create = function Create(props) {
+  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.useForm)({
+    title: "",
+    date_start: "",
+    date_end: ""
+  }),
+      data = _useForm.data,
+      setData = _useForm.setData,
+      post = _useForm.post,
+      errors = _useForm.errors;
+
+  var submit = function submit(e) {
+    e.preventDefault();
+    post(route("dashboard.competitions.store"));
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    auth: props.auth,
+    errors: props.errors,
+    header: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+      className: "font-semibold text-xl text-gray-800 leading-tight",
+      children: "Add New Competition"
+    }),
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.Head, {
+      title: "Create Competition"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      errors: errors
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_CompetitionsForm__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      title: data.title,
+      date_start: data.date_start,
+      date_end: data.date_end,
+      submit: submit,
+      setData: setData,
+      buttonName: "Create",
+      hasDelete: false,
+      handleDelete: function handleDelete() {}
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Create);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Competitions/Edit.js":
+/*!*************************************************!*\
+  !*** ./resources/js/Pages/Competitions/Edit.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Layouts/Authenticated */ "./resources/js/Layouts/Authenticated.js");
+/* harmony import */ var _Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/ValidationErrors */ "./resources/js/Components/ValidationErrors.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _Components_CompetitionsForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/CompetitionsForm */ "./resources/js/Components/CompetitionsForm.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+var Edit = function Edit(props) {
+  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.useForm)({
+    title: props.competition.title || "",
+    date_start: props.competition.date_start || "",
+    date_end: props.competition.date_end || ""
+  }),
+      data = _useForm.data,
+      setData = _useForm.setData,
+      put = _useForm.put,
+      destroy = _useForm["delete"],
+      errors = _useForm.errors;
+
+  var submit = function submit(e) {
+    e.preventDefault();
+    put(route("dashboard.competitions.update", props.competition.id));
+  };
+
+  var shouldDelete = function shouldDelete(e) {
+    e.preventDefault();
+
+    if (confirm("Are you sure that you want to delete this competition?")) {
+      destroy(route("dashboard.competitions.destroy", props.competition.id));
+    }
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    auth: props.auth,
+    errors: props.errors,
+    header: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+      className: "font-semibold text-xl text-gray-800 leading-tight",
+      children: "Edit Competition"
+    }),
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.Head, {
+      title: "Edit Competition"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      errors: errors
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_CompetitionsForm__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      title: data.title,
+      date_start: data.date_start,
+      date_end: data.date_end,
+      submit: submit,
+      setData: setData,
+      buttonName: "Update",
+      hasDelete: true,
+      shouldDelete: shouldDelete
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Competitions/Index.js":
 /*!**************************************************!*\
   !*** ./resources/js/Pages/Competitions/Index.js ***!
@@ -4581,7 +4857,6 @@ var Index = function Index(_ref) {
       errors = _ref.errors,
       status = _ref.status,
       competitions = _ref.competitions;
-  console.log(competitions);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
     auth: auth,
     errors: errors,
@@ -4662,11 +4937,11 @@ var Index = function Index(_ref) {
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
                         scope: "col",
                         className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
-                        children: "Date"
+                        children: "Starts"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
                         scope: "col",
                         className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
-                        children: "Days"
+                        children: "Ends"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
                         scope: "col",
                         className: "relative px-6 py-3",
@@ -4685,16 +4960,33 @@ var Index = function Index(_ref) {
                           children: cmp.title
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                           className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500",
-                          children: cmp.date
+                          children: cmp.date_start
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                           className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500",
-                          children: cmp.duration
+                          children: cmp.date_start
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                           className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium",
                           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
                             href: route("dashboard.competitions.edit", cmp.id),
                             className: "text-indigo-600 hover:text-indigo-900",
-                            children: "Edit"
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("svg", {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              className: "h-6 w-6",
+                              fill: "none",
+                              viewBox: "0 0 24 24",
+                              stroke: "currentColor",
+                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round",
+                                strokeWidth: 2,
+                                d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round",
+                                strokeWidth: 2,
+                                d: "M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                              })]
+                            })
                           })
                         })]
                       }, index);
@@ -5522,21 +5814,6 @@ function Index(props) {
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                 className: "grid grid-cols-12 gap-6 px-4 py-5 sm:p-6",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-                  className: "col-span-12",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                    htmlFor: "register_number",
-                    className: "block text-sm font-medium text-gray-700",
-                    children: "Register Number"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                    type: "text",
-                    id: "register_number",
-                    name: "register_number",
-                    onChange: handleOnChange,
-                    value: data.register_number,
-                    className: "w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none",
-                    placeholder: "Register Number"
-                  })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                   className: "col-span-12 sm:col-span-4",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
                     htmlFor: "name",
@@ -5664,7 +5941,7 @@ function Index(props) {
                     placeholder: "Email"
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-                  className: "col-span-12 sm:col-span-2",
+                  className: "col-span-12 sm:col-span-4",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
                     htmlFor: "datefrom",
                     className: "block text-sm font-medium text-gray-700",
@@ -5681,7 +5958,7 @@ function Index(props) {
                     max: new Date().getFullYear()
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-                  className: "col-span-12 sm:col-span-2",
+                  className: "col-span-12 sm:col-span-4",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
                     htmlFor: "dateto",
                     className: "block text-sm font-medium text-gray-700",
@@ -5696,6 +5973,21 @@ function Index(props) {
                     placeholder: "Year to",
                     min: "1970",
                     max: new Date().getFullYear()
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                  className: "col-span-12 sm:col-span-4",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                    htmlFor: "register_number",
+                    className: "block text-sm font-medium text-gray-700",
+                    children: "Register Number"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    type: "text",
+                    id: "register_number",
+                    name: "register_number",
+                    onChange: handleOnChange,
+                    value: data.register_number,
+                    className: "w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none",
+                    placeholder: "Register Number"
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                   className: "col-span-12 text-right",
@@ -59302,6 +59594,10 @@ var map = {
 	"./Auth/ResetPassword.js": "./resources/js/Pages/Auth/ResetPassword.js",
 	"./Auth/VerifyEmail": "./resources/js/Pages/Auth/VerifyEmail.js",
 	"./Auth/VerifyEmail.js": "./resources/js/Pages/Auth/VerifyEmail.js",
+	"./Competitions/Create": "./resources/js/Pages/Competitions/Create.js",
+	"./Competitions/Create.js": "./resources/js/Pages/Competitions/Create.js",
+	"./Competitions/Edit": "./resources/js/Pages/Competitions/Edit.js",
+	"./Competitions/Edit.js": "./resources/js/Pages/Competitions/Edit.js",
 	"./Competitions/Index": "./resources/js/Pages/Competitions/Index.js",
 	"./Competitions/Index.js": "./resources/js/Pages/Competitions/Index.js",
 	"./Dashboard": "./resources/js/Pages/Dashboard.js",

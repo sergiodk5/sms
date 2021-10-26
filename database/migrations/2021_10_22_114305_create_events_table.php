@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Competition;
+use App\Models\Race;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,9 +17,8 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->tinyInteger('gender');
-            $table->foreignIdFor(Competition::class)->onDelete('cascade');
+            $table->string('title');
+            $table->tinyInteger('gender')->comment('1 Men, 2 Women, 3 Mixed');
             $table->timestamps();
         });
     }
