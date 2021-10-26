@@ -26,7 +26,7 @@ class Swimmer extends Model
      */
     protected $guarded = [];
 
-    public function group()
+    public function group(): BelongsTo
     {
         return $this->belongsTo(Group::class, 'group_id');
     }
