@@ -19,7 +19,7 @@ Route::get('dashboard/swimmers')->name('dashboard.swimmers')->uses('App\Http\Con
 Route::get('dashboard/swimmers/create')->name('dashboard.swimmers.create')->uses('App\Http\Controllers\SwimmersController@create')->middleware('auth', 'verified');
 Route::post('dashboard/swimmers')->name('dashboard.swimmers.store')->uses('App\Http\Controllers\SwimmersController@store')->middleware('auth', 'verified');
 Route::get('dashboard/swimmers/{swimmer}/edit')->name('dashboard.swimmers.edit')->uses('App\Http\Controllers\SwimmersController@edit')->middleware('auth', 'verified');
-Route::put('dashboard/swimmers/{swimmer}')->name('dashboard.swimmers.update')->uses('App\Http\Controllers\SwimmersController@update')->middleware('auth', 'verified');
+Route::post('dashboard/swimmers/{swimmer}')->name('dashboard.swimmers.update')->uses('App\Http\Controllers\SwimmersController@update')->middleware('auth', 'verified');
 Route::delete('dashboard/swimmers/{swimmer}')->name('dashboard.swimmers.destroy')->uses('App\Http\Controllers\SwimmersController@destroy')->middleware('auth', 'verified');
 Route::put('dashboard/swimmers/{swimmer}/restore')->name('dashboard.swimmers.restore')->uses('App\Http\Controllers\SwimmersController@restore')->middleware('auth', 'verified');
 

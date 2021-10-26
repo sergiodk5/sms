@@ -14,13 +14,16 @@ export default function Create(props) {
         land: "",
         mobile: "",
         address: "",
+        register_number: "",
+        photo: "",
     });
 
+    const setPhoto = (image) => {
+        setData("photo", image);
+    };
+
     const onHandleChange = (event) => {
-        setData(
-            event.target.name,
-            event.target.value
-        );
+        setData(event.target.name, event.target.value);
     };
 
     const submit = (e) => {
@@ -51,6 +54,23 @@ export default function Create(props) {
                                 <div className="shadow overflow-hidden sm:rounded-md">
                                     <div className="px-4 py-5 bg-white sm:p-6">
                                         <div className="grid grid-cols-12 gap-6">
+                                            <div className="col-span-12">
+                                                <label
+                                                    htmlFor="photo"
+                                                    className="block text-sm font-medium text-gray-700"
+                                                >
+                                                    Image
+                                                </label>
+                                                <input
+                                                    type="file"
+                                                    onChange={(e) =>
+                                                        setPhoto(
+                                                            e.target.files[0]
+                                                        )
+                                                    }
+                                                />
+                                            </div>
+
                                             <div className="col-span-12 sm:col-span-6">
                                                 <label
                                                     htmlFor="name"
@@ -87,7 +107,7 @@ export default function Create(props) {
                                                 />
                                             </div>
 
-                                            <div className="col-span-12 sm:col-span-8">
+                                            <div className="col-span-12 sm:col-span-4">
                                                 <label
                                                     htmlFor="dob"
                                                     className="block text-sm font-medium text-gray-700"
@@ -130,6 +150,24 @@ export default function Create(props) {
                                                         Female
                                                     </option>
                                                 </select>
+                                            </div>
+
+                                            <div className="col-span-12 sm:col-span-4">
+                                                <label
+                                                    htmlFor="register_number"
+                                                    className="block text-sm font-medium text-gray-700"
+                                                >
+                                                    Register Number
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    name="register_number"
+                                                    id="register_number"
+                                                    autoComplete="family-name"
+                                                    value={data.register_number}
+                                                    onChange={onHandleChange}
+                                                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                />
                                             </div>
 
                                             <div className="col-span-12">

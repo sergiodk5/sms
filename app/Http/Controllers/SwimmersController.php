@@ -28,6 +28,7 @@ class SwimmersController extends Controller
         $address  = $request->has('address') && $request->address ? $request->address : null;
         $datefrom = $request->has('datefrom') && $request->datefrom ? $request->datefrom : null;
         $dateto   = $request->has('dateto') && $request->dateto ? $request->dateto : null;
+        $regNo    = $request->has('register_number') && $request->register_number ? $request->register_number : null;
 
         $swimmers = Swimmer::when($name, function ($query) use ($name) {
             return $query->where('name', 'like', '%' . $name . '%');
@@ -47,6 +48,8 @@ class SwimmersController extends Controller
             return $query->where('address', 'like', '%' . $address . '%');
         })->when($datefrom && !$dateto, function ($query) use ($datefrom) {
             return $query->whereYear('dob', $datefrom);
+        })->when($regNo, function ($query) use ($regNo) {
+            return $query->where('register_number', 'like', '%' . $regNo . '%');
         })->when($dateto && $datefrom, function ($query) use ($dateto, $datefrom) {
             $from = $datefrom . '-00-00';
             $to = $dateto . '-12-31';
@@ -54,19 +57,21 @@ class SwimmersController extends Controller
             return $query->whereBetween('dob', [$from, $to]);
         })->with('group')->get()->transform(function ($swimmer) {
             return [
-                    'id' => $swimmer->id,
-                    'name' => $swimmer->name,
-                    'last' => $swimmer->last,
-                    'guardian' => $swimmer->guardian,
-                    'land' => $swimmer->land,
-                    'mobile' => $swimmer->mobile,
-                    'email' => $swimmer->email,
-                    'address' => $swimmer->address,
-                    'dob' => $swimmer->dob,
-                    'gender' => $swimmer->gender,
-                    'groupId' => $swimmer->group_id,
-                    'groupName' => $swimmer->group->name,
-                ];
+                'id' => $swimmer->id,
+                'name' => $swimmer->name,
+                'last' => $swimmer->last,
+                'guardian' => $swimmer->guardian,
+                'land' => $swimmer->land,
+                'mobile' => $swimmer->mobile,
+                'email' => $swimmer->email,
+                'address' => $swimmer->address,
+                'dob' => $swimmer->dob,
+                'gender' => $swimmer->gender,
+                'groupId' => $swimmer->group_id,
+                'groupName' => $swimmer->group()->exists() ? $swimmer->group->name : null,
+                'photo' => $swimmer->photo,
+                'regNo' => $swimmer->register_number,
+            ];
         });
 
         return Inertia::render('Swimmers/Index', [
@@ -81,6 +86,7 @@ class SwimmersController extends Controller
             'address'  => $address,
             'datefrom' => $datefrom,
             'dateto'   => $dateto,
+            'regNo'    => $regNo,
             'status'   => session('status'),
         ]);
     }
@@ -98,9 +104,14 @@ class SwimmersController extends Controller
      */
     public function store(SwimmerRequest $request)
     {
-        Swimmer::create(
+        $smr = Swimmer::create(
             $request->validated()
         );
+
+        $image_path = $request->hasFile('photo') ? $request->file('photo')->store('swimmers', 'public') : null;
+
+        $smr->photo = $image_path;
+        $smr->save();
 
         return Redirect::route('dashboard.swimmers')->with('status', 'Swimmer created.');
     }
@@ -142,9 +153,28 @@ class SwimmersController extends Controller
      */
     public function update(SwimmerRequest $request, Swimmer $swimmer)
     {
-        $swimmer->update(
-            $request->validated()
-        );
+        $request->validated();
+
+        if ($request->hasFile('image') && $swimmer->photo) {
+            $old_image_path = public_path() . '/storage/' . $swimmer->photo;
+            unlink($old_image_path);
+        }
+
+        $image_path = $request->hasFile('image') ? $request->file('image')->store('swimmers', 'public') : null;
+
+        $swimmer->name            = $request->name;
+        $swimmer->email           = $request->email;
+        $swimmer->last            = $request->last;
+        $swimmer->guardian        = $request->guardian;
+        $swimmer->land            = $request->land;
+        $swimmer->mobile          = $request->mobile;
+        $swimmer->address         = $request->address;
+        $swimmer->dob             = $request->dob;
+        $swimmer->gender          = $request->gender;
+        $swimmer->register_number = $request->register_number;
+        $swimmer->photo           = $image_path;
+
+        $swimmer->update();
 
         return Redirect::route('dashboard.swimmers')->with('status', 'Swimmer updated.');
     }
@@ -157,6 +187,11 @@ class SwimmersController extends Controller
      */
     public function destroy(Swimmer $swimmer)
     {
+        if ($swimmer->photo) {
+            $old_image_path = public_path() . '/storage/' . $swimmer->photo;
+            unlink($old_image_path);
+        }
+
         $swimmer->delete();
 
         return Redirect::route('dashboard.swimmers')->with('status', 'Swimmer deleted.');

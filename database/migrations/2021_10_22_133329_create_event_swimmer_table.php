@@ -20,9 +20,7 @@ class CreateEventSwimmerTable extends Migration
             $table->foreignIdFor(Swimmer::class)->onDelete('cascade');
             $table->foreignIdFor(Event::class)->onDelete('cascade');
             $table->string('rnk')->nullable();
-            $table->string('reg_no')->nullable();
             $table->string('total')->nullable();
-            $table->string('pr_record')->nullable();
             $table->timestamps();
         });
     }

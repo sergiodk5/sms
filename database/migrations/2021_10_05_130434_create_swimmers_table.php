@@ -25,6 +25,8 @@ class CreateSwimmersTable extends Migration
             $table->string('address')->nullable();
             $table->date('dob')->nullable();
             $table->boolean('gender');
+            $table->string('photo')->nullable();
+            $table->string('register_number')->unique()->nullable();
             $table->foreignIdFor(Group::class)->nullable()->constrained();
             $table->timestamps();
             $table->softDeletes();

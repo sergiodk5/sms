@@ -4794,12 +4794,18 @@ function Create(props) {
     email: "",
     land: "",
     mobile: "",
-    address: ""
+    address: "",
+    register_number: "",
+    photo: ""
   }),
       data = _useForm.data,
       setData = _useForm.setData,
       post = _useForm.post,
       errors = _useForm.errors;
+
+  var setPhoto = function setPhoto(image) {
+    setData("photo", image);
+  };
 
   var onHandleChange = function onHandleChange(event) {
     setData(event.target.name, event.target.value);
@@ -4838,6 +4844,18 @@ function Create(props) {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                     className: "grid grid-cols-12 gap-6",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                      className: "col-span-12",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                        htmlFor: "photo",
+                        className: "block text-sm font-medium text-gray-700",
+                        children: "Image"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                        type: "file",
+                        onChange: function onChange(e) {
+                          return setPhoto(e.target.files[0]);
+                        }
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                       className: "col-span-12 sm:col-span-6",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
                         htmlFor: "name",
@@ -4868,7 +4886,7 @@ function Create(props) {
                         className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                      className: "col-span-12 sm:col-span-8",
+                      className: "col-span-12 sm:col-span-4",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
                         htmlFor: "dob",
                         className: "block text-sm font-medium text-gray-700",
@@ -4904,6 +4922,21 @@ function Create(props) {
                           value: "0",
                           children: "Female"
                         })]
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                      className: "col-span-12 sm:col-span-4",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                        htmlFor: "register_number",
+                        className: "block text-sm font-medium text-gray-700",
+                        children: "Register Number"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                        type: "text",
+                        name: "register_number",
+                        id: "register_number",
+                        autoComplete: "family-name",
+                        value: data.register_number,
+                        onChange: onHandleChange,
+                        className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                       className: "col-span-12",
@@ -5016,6 +5049,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/ValidationErrors */ "./resources/js/Components/ValidationErrors.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -5024,36 +5063,48 @@ __webpack_require__.r(__webpack_exports__);
 
 function Edit(props) {
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.useForm)({
-    name: props.swimmer.name || '',
-    last: props.swimmer.last || '',
-    dob: props.swimmer.dob || '',
-    gender: props.swimmer.gender || '',
-    guardian: props.swimmer.guardian || '',
-    email: props.swimmer.email || '',
-    land: props.swimmer.land || '',
-    mobile: props.swimmer.mobile || '',
-    address: props.swimmer.address || ''
+    name: props.swimmer.name || "",
+    last: props.swimmer.last || "",
+    dob: props.swimmer.dob || "",
+    gender: props.swimmer.gender || 0,
+    guardian: props.swimmer.guardian || "",
+    email: props.swimmer.email || "",
+    land: props.swimmer.land || "",
+    mobile: props.swimmer.mobile || "",
+    address: props.swimmer.address || "",
+    register_number: props.swimmer.register_number || "",
+    photo: props.swimmer.photo || null,
+    image: null
   }),
       data = _useForm.data,
       setData = _useForm.setData,
-      put = _useForm.put,
+      post = _useForm.post,
       destroy = _useForm["delete"],
-      errors = _useForm.errors;
+      errors = _useForm.errors,
+      progress = _useForm.progress;
 
   var onHandleChange = function onHandleChange(event) {
     setData(event.target.name, event.target.value);
   };
 
+  var setPhoto = function setPhoto(e) {
+    setData("image", e.target.files[0]);
+  };
+
   var submit = function submit(e) {
     e.preventDefault();
-    put(route("dashboard.swimmers.update", props.swimmer.id));
+    post(route("dashboard.swimmers.update", props.swimmer.id), _objectSpread({
+      _method: "put"
+    }, data), {
+      forceFormData: true
+    });
   };
 
   var handleDelete = function handleDelete(e) {
     e.preventDefault();
 
-    if (confirm('Are you sure that you want to delete this swimmer?')) {
-      destroy(route('dashboard.swimmers.destroy', props.swimmer.id));
+    if (confirm("Are you sure that you want to delete this swimmer?")) {
+      destroy(route("dashboard.swimmers.destroy", props.swimmer.id));
     }
   };
 
@@ -5076,15 +5127,39 @@ function Edit(props) {
           className: "flex flex-col",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: "-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("form", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
               onSubmit: submit,
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              children: [progress && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("progress", {
+                value: progress.percentage,
+                max: "100",
+                children: [progress.percentage, "%"]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                 className: "shadow overflow-hidden sm:rounded-md",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                   className: "px-4 py-5 bg-white sm:p-6",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                     className: "grid grid-cols-12 gap-6",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                    children: [data.photo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                      className: "col-span-12",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                        className: "h-60 w-60",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+                          className: "h-60 w-60 rounded-full",
+                          src: "/storage/".concat(data.photo),
+                          alt: ""
+                        })
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                      className: "col-span-12",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                        htmlFor: "image",
+                        className: "block text-sm font-medium text-gray-700",
+                        children: "Image"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                        type: "file",
+                        onChange: setPhoto
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                       className: "col-span-12 sm:col-span-6",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
                         htmlFor: "name",
@@ -5115,7 +5190,7 @@ function Edit(props) {
                         className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                      className: "col-span-12 sm:col-span-8",
+                      className: "col-span-12 sm:col-span-4",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
                         htmlFor: "dob",
                         className: "block text-sm font-medium text-gray-700",
@@ -5149,6 +5224,20 @@ function Edit(props) {
                           value: "1",
                           children: "Male"
                         })]
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                      className: "col-span-12 sm:col-span-4",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                        htmlFor: "register_number",
+                        className: "block text-sm font-medium text-gray-700",
+                        children: "Register Number"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                        type: "text",
+                        name: "register_number",
+                        id: "register_number",
+                        value: data.register_number,
+                        onChange: onHandleChange,
+                        className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                       className: "col-span-12",
@@ -5239,7 +5328,7 @@ function Edit(props) {
                     children: "Delete"
                   })]
                 })]
-              })
+              })]
             })
           })
         })
@@ -5308,6 +5397,7 @@ function Index(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     setSwimmers(props.swimmers);
     setData({
+      register_number: props.register_number ? props.register_number : "",
       name: props.name ? props.name : "",
       last: props.last ? props.last : "",
       guardian: props.guardian ? props.guardian : "",
@@ -5325,6 +5415,7 @@ function Index(props) {
   }, [props.swimmers]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     setData({
+      register_number: props.register_number ? props.register_number : "",
       name: props.name ? props.name : "",
       last: props.last ? props.last : "",
       guardian: props.guardian ? props.guardian : "",
@@ -5431,6 +5522,21 @@ function Index(props) {
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                 className: "grid grid-cols-12 gap-6 px-4 py-5 sm:p-6",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                  className: "col-span-12",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                    htmlFor: "register_number",
+                    className: "block text-sm font-medium text-gray-700",
+                    children: "Register Number"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    type: "text",
+                    id: "register_number",
+                    name: "register_number",
+                    onChange: handleOnChange,
+                    value: data.register_number,
+                    className: "w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none",
+                    placeholder: "Register Number"
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                   className: "col-span-12 sm:col-span-4",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
                     htmlFor: "name",
@@ -5628,6 +5734,10 @@ function Index(props) {
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
                         scope: "col",
                         className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
+                        children: "Reg. No"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
+                        scope: "col",
+                        className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
                         children: "Age"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
                         scope: "col",
@@ -5656,9 +5766,16 @@ function Index(props) {
                       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                           className: "px-6 py-4 whitespace-nowrap",
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                             className: "flex items-center",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                            children: [swimmer.photo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                              className: "flex-shrink-0 h-10 w-10",
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+                                className: "h-10 w-10 rounded-full",
+                                src: "/storage/".concat(swimmer.photo),
+                                alt: "Avatar"
+                              })
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                               className: "ml-4",
                               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                                 className: "text-sm font-medium text-gray-900",
@@ -5667,8 +5784,11 @@ function Index(props) {
                                 className: "text-sm text-gray-500",
                                 children: swimmer.guardian
                               })]
-                            })
+                            })]
                           })
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                          className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500",
+                          children: swimmer.regNo
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                           className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500",
                           children: getYears(swimmer.dob)
@@ -5695,7 +5815,24 @@ function Index(props) {
                           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
                             href: route("dashboard.swimmers.edit", swimmer.id),
                             className: "text-indigo-600 hover:text-indigo-900",
-                            children: "Edit"
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("svg", {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              className: "h-6 w-6",
+                              fill: "none",
+                              viewBox: "0 0 24 24",
+                              stroke: "currentColor",
+                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round",
+                                strokeWidth: 2,
+                                d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round",
+                                strokeWidth: 2,
+                                d: "M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                              })]
+                            })
                           })
                         })]
                       }, index);

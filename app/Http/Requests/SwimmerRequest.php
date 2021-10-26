@@ -33,6 +33,8 @@ class SwimmerRequest extends FormRequest
             'address' => ['nullable'],
             'dob' => ['nullable', 'date'],
             'gender' => ['required', 'boolean'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif,svg', 'max:2048'],
+            'register_number' => ['nullable'],
         ];
     }
 }

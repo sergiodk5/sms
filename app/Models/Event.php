@@ -20,6 +20,6 @@ class Event extends Model
 
     public function swimmers(): BelongsToMany
     {
-        return $this->belongsToMany(Swimmer::class)->as('partitipation')->withPivot('rnk', 'reg_no', 'total', 'pr_record');
+        return $this->belongsToMany(Swimmer::class)->as('partitipation')->withPivot('rnk', 'total');
     }
 }

@@ -22,6 +22,7 @@ export default function Index(props) {
     useEffect(() => {
         setSwimmers(props.swimmers);
         setData({
+            register_number: props.register_number ? props.register_number : "",
             name: props.name ? props.name : "",
             last: props.last ? props.last : "",
             guardian: props.guardian ? props.guardian : "",
@@ -41,6 +42,7 @@ export default function Index(props) {
 
     useEffect(() => {
         setData({
+            register_number: props.register_number ? props.register_number : "",
             name: props.name ? props.name : "",
             last: props.last ? props.last : "",
             guardian: props.guardian ? props.guardian : "",
@@ -145,6 +147,24 @@ export default function Index(props) {
                                     Search
                                 </h3>
                                 <div className="grid grid-cols-12 gap-6 px-4 py-5 sm:p-6">
+                                    <div className="col-span-12">
+                                        <label
+                                            htmlFor="register_number"
+                                            className="block text-sm font-medium text-gray-700"
+                                        >
+                                            Register Number
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="register_number"
+                                            name="register_number"
+                                            onChange={handleOnChange}
+                                            value={data.register_number}
+                                            className="w-full px-6 text-left text-xs font-medium text-gray-500 bg-white border border-gray-300 rounded-md focus:border-indigo-400 focus:outline-none"
+                                            placeholder="Register Number"
+                                        />
+                                    </div>
+
                                     <div className="col-span-12 sm:col-span-4">
                                         <label
                                             htmlFor="name"
@@ -360,6 +380,12 @@ export default function Index(props) {
                                                         scope="col"
                                                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                                     >
+                                                        Reg. No
+                                                    </th>
+                                                    <th
+                                                        scope="col"
+                                                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                                    >
                                                         Age
                                                     </th>
                                                     <th
@@ -396,6 +422,15 @@ export default function Index(props) {
                                                         <tr key={index}>
                                                             <td className="px-6 py-4 whitespace-nowrap">
                                                                 <div className="flex items-center">
+                                                                    {swimmer.photo && (
+                                                                        <div className="flex-shrink-0 h-10 w-10">
+                                                                            <img
+                                                                                className="h-10 w-10 rounded-full"
+                                                                                src={`/storage/${swimmer.photo}`}
+                                                                                alt="Avatar"
+                                                                            />
+                                                                        </div>
+                                                                    )}
                                                                     <div className="ml-4">
                                                                         <div className="text-sm font-medium text-gray-900">
                                                                             {
@@ -412,6 +447,9 @@ export default function Index(props) {
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                            </td>
+                                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                                {swimmer.regNo}
                                                             </td>
                                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                                 {getYears(
@@ -456,7 +494,30 @@ export default function Index(props) {
                                                                     )}
                                                                     className="text-indigo-600 hover:text-indigo-900"
                                                                 >
-                                                                    Edit
+                                                                    <svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        className="h-6 w-6"
+                                                                        fill="none"
+                                                                        viewBox="0 0 24 24"
+                                                                        stroke="currentColor"
+                                                                    >
+                                                                        <path
+                                                                            strokeLinecap="round"
+                                                                            strokeLinejoin="round"
+                                                                            strokeWidth={
+                                                                                2
+                                                                            }
+                                                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                                                        />
+                                                                        <path
+                                                                            strokeLinecap="round"
+                                                                            strokeLinejoin="round"
+                                                                            strokeWidth={
+                                                                                2
+                                                                            }
+                                                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                                                        />
+                                                                    </svg>
                                                                 </Link>
                                                             </td>
                                                         </tr>
