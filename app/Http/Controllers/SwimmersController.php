@@ -6,17 +6,13 @@ use App\Http\Requests\SwimmerRequest;
 use App\Models\Swimmer;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Inertia\Response as InertiaResponse;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
 
 class SwimmersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): InertiaResponse
     {
         $name     = $request->has('name') && $request->name ? $request->name : null;
         $last     = $request->has('last') && $request->last ? $request->last : null;
@@ -91,18 +87,12 @@ class SwimmersController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): InertiaResponse
     {
         return Inertia::render('Swimmers/Create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\SwimmerRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(SwimmerRequest $request)
+    public function store(SwimmerRequest $request): RedirectResponse
     {
         $smr = Swimmer::create(
             $request->validated()
@@ -116,13 +106,7 @@ class SwimmersController extends Controller
         return Redirect::route('dashboard.swimmers')->with('status', 'Swimmer created.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Swimmer  $swimmer
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Swimmer $swimmer)
+    public function show(Swimmer $swimmer): InertiaResponse
     {
         return Inertia::render('Swimmers/View', [
             'swimmers' => $swimmer,
@@ -130,13 +114,7 @@ class SwimmersController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Swimmer  $swimmer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Swimmer $swimmer)
+    public function edit(Swimmer $swimmer): InertiaResponse
     {
         return Inertia::render('Swimmers/Edit', [
             'swimmer' => $swimmer,
@@ -144,14 +122,7 @@ class SwimmersController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\SwimmerRequest  $request
-     * @param  \App\Models\Swimmer  $swimmer
-     * @return \Illuminate\Http\Response
-     */
-    public function update(SwimmerRequest $request, Swimmer $swimmer)
+    public function update(SwimmerRequest $request, Swimmer $swimmer): RedirectResponse
     {
         $request->validated();
 
@@ -179,13 +150,7 @@ class SwimmersController extends Controller
         return Redirect::route('dashboard.swimmers')->with('status', 'Swimmer updated.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Swimmer  $swimmer
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Swimmer $swimmer)
+    public function destroy(Swimmer $swimmer): RedirectResponse
     {
         if ($swimmer->photo) {
             $old_image_path = public_path() . '/storage/' . $swimmer->photo;
