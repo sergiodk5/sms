@@ -29,6 +29,7 @@ Route::post('dashboard/competitions')->name('dashboard.competitions.store')->use
 Route::get('dashboard/competitions/{competition}/edit')->name('dashboard.competitions.edit')->uses('App\Http\Controllers\CompetitionsController@edit')->middleware('auth', 'verified');
 Route::put('dashboard/competitions/{competition}')->name('dashboard.competitions.update')->uses('App\Http\Controllers\CompetitionsController@update')->middleware('auth', 'verified');
 Route::delete('dashboard/competitions/{competition}')->name('dashboard.competitions.destroy')->uses('App\Http\Controllers\CompetitionsController@destroy')->middleware('auth', 'verified');
-Route::put('dashboard/competitions/{swimmer}/restore')->name('dashboard.competitions.restore')->uses('App\Http\Controllers\CompetitionsController@restore')->middleware('auth', 'verified');
+Route::put('dashboard/competitions/{competition}/restore')->name('dashboard.competitions.restore')->uses('App\Http\Controllers\CompetitionsController@restore')->middleware('auth', 'verified');
+Route::get('dashboard/competitions/{competition}')->name('dashboard.competitions.show')->uses('App\Http\Controllers\CompetitionsController@show')->middleware('auth', 'verified');
 
 require __DIR__ . '/auth.php';

@@ -3367,6 +3367,7 @@ var CompetitionsForm = function CompetitionsForm(_ref) {
   var title = _ref.title,
       date_start = _ref.date_start,
       date_end = _ref.date_end,
+      location = _ref.location,
       submit = _ref.submit,
       setData = _ref.setData,
       buttonName = _ref.buttonName,
@@ -3404,7 +3405,7 @@ var CompetitionsForm = function CompetitionsForm(_ref) {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                   className: "grid grid-cols-12 gap-6",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                    className: "col-span-12 sm:col-span-6",
+                    className: "col-span-12",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
                       htmlFor: "title",
                       className: "block text-sm font-medium text-gray-700",
@@ -3419,7 +3420,22 @@ var CompetitionsForm = function CompetitionsForm(_ref) {
                       className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                     })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                    className: "col-span-12 sm:col-span-3",
+                    className: "col-span-12 sm:col-span-4",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                      htmlFor: "location",
+                      className: "block text-sm font-medium text-gray-700",
+                      children: "Location"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                      type: "text",
+                      name: "location",
+                      id: "location",
+                      autoComplete: "competition-location",
+                      value: location,
+                      onChange: onHandleChange,
+                      className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                    className: "col-span-12 sm:col-span-4",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
                       htmlFor: "date_start",
                       className: "block text-sm font-medium text-gray-700",
@@ -3434,7 +3450,7 @@ var CompetitionsForm = function CompetitionsForm(_ref) {
                       className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                     })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                    className: "col-span-12 sm:col-span-3",
+                    className: "col-span-12 sm:col-span-4",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
                       htmlFor: "date_end",
                       className: "block text-sm font-medium text-gray-700",
@@ -3452,15 +3468,15 @@ var CompetitionsForm = function CompetitionsForm(_ref) {
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                 className: "px-4 py-3 bg-gray-50 sm:px-6 ".concat(hasDelete ? "flex justify-between" : "text-right"),
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-                  type: "submit",
-                  className: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
-                  children: buttonName
-                }), hasDelete && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+                children: [hasDelete && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
                   onClick: handleDelete,
                   type: "button",
                   className: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500",
                   children: "Delete"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+                  type: "submit",
+                  className: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+                  children: buttonName
                 })]
               })]
             })
@@ -3776,6 +3792,48 @@ function ResponsiveNavLink(_ref) {
     children: children
   });
 }
+
+/***/ }),
+
+/***/ "./resources/js/Components/Tabs.js":
+/*!*****************************************!*\
+  !*** ./resources/js/Components/Tabs.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "TabList": () => (/* binding */ TabList),
+/* harmony export */   "TabContent": () => (/* binding */ TabContent)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+var TabList = function TabList(_ref) {
+  var name = _ref.name,
+      setActive = _ref.setActive,
+      title = _ref.title,
+      active = _ref.active;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
+    className: "-mb-px mr-1",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+      onClick: function onClick(e) {
+        return setActive(name);
+      },
+      className: "inline-block py-2 px-4 hover:text-purple-500 focus:outline-none ".concat(name === active ? "bg-white border-l border-t border-r rounded-t font-semibold hover:text-blue-darker" : "bg-gray-50"),
+      children: title
+    })
+  });
+};
+var TabContent = function TabContent(_ref2) {
+  var tab = _ref2.tab,
+      active = _ref2.active,
+      children = _ref2.children;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+    className: "".concat(tab === active ? "" : "hidden", " bg-white shadow overflow-hidden border-b border-gray-200 sm:rounded-b-lg px-4 py-5 sm:p-6"),
+    children: children
+  });
+};
 
 /***/ }),
 
@@ -4713,7 +4771,8 @@ var Create = function Create(props) {
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.useForm)({
     title: "",
     date_start: "",
-    date_end: ""
+    date_end: "",
+    location: ""
   }),
       data = _useForm.data,
       setData = _useForm.setData,
@@ -4740,6 +4799,7 @@ var Create = function Create(props) {
       title: data.title,
       date_start: data.date_start,
       date_end: data.date_end,
+      location: data.location,
       submit: submit,
       setData: setData,
       buttonName: "Create",
@@ -4782,7 +4842,8 @@ var Edit = function Edit(props) {
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.useForm)({
     title: props.competition.title || "",
     date_start: props.competition.date_start || "",
-    date_end: props.competition.date_end || ""
+    date_end: props.competition.date_end || "",
+    location: props.competition.location || ""
   }),
       data = _useForm.data,
       setData = _useForm.setData,
@@ -4818,6 +4879,7 @@ var Edit = function Edit(props) {
       title: data.title,
       date_start: data.date_start,
       date_end: data.date_end,
+      location: data.location,
       submit: submit,
       setData: setData,
       buttonName: "Update",
@@ -4937,6 +4999,10 @@ var Index = function Index(_ref) {
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
                         scope: "col",
                         className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
+                        children: "Location"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
+                        scope: "col",
+                        className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
                         children: "Starts"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
                         scope: "col",
@@ -4960,6 +5026,9 @@ var Index = function Index(_ref) {
                           children: cmp.title
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                           className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500",
+                          children: cmp.location
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                          className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500",
                           children: cmp.date_start
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                           className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500",
@@ -4967,7 +5036,7 @@ var Index = function Index(_ref) {
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                           className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium",
                           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
-                            href: route("dashboard.competitions.edit", cmp.id),
+                            href: route("dashboard.competitions.show", cmp.id),
                             className: "text-indigo-600 hover:text-indigo-900",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("svg", {
                               xmlns: "http://www.w3.org/2000/svg",
@@ -5003,6 +5072,133 @@ var Index = function Index(_ref) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Index);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Competitions/Show.js":
+/*!*************************************************!*\
+  !*** ./resources/js/Pages/Competitions/Show.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Layouts/Authenticated */ "./resources/js/Layouts/Authenticated.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _Components_Tabs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/Tabs */ "./resources/js/Components/Tabs.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+var Show = function Show(props) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('events'),
+      _useState2 = _slicedToArray(_useState, 2),
+      activeTab = _useState2[0],
+      setActiveTab = _useState2[1];
+
+  console.log(props.competition);
+
+  var dateString = function dateString(d) {
+    var ev = new Date(d);
+    return ev.toLocaleString;
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    auth: props.auth,
+    errors: props.errors,
+    header: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
+      className: "font-semibold text-xl text-gray-800 leading-tight",
+      children: props.competition.title
+    }),
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Head, {
+      title: props.competition.title
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      className: "max-w-7xl pt-12 mx-auto sm:px-6 lg:px-8",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: "flex flex-col",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            className: "py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "px-4 py-5 sm:p-6",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("ul", {
+                className: "list-reset flex border-b",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Tabs__WEBPACK_IMPORTED_MODULE_3__.TabList, {
+                  name: "events",
+                  setActive: setActiveTab,
+                  title: "Events",
+                  active: activeTab
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Tabs__WEBPACK_IMPORTED_MODULE_3__.TabList, {
+                  name: "second",
+                  setActive: setActiveTab,
+                  title: "Second",
+                  active: activeTab
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Tabs__WEBPACK_IMPORTED_MODULE_3__.TabList, {
+                  name: "third",
+                  setActive: setActiveTab,
+                  title: "Third",
+                  active: activeTab
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Tabs__WEBPACK_IMPORTED_MODULE_3__.TabList, {
+                  name: "forth",
+                  setActive: setActiveTab,
+                  title: "Forth",
+                  active: activeTab
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Tabs__WEBPACK_IMPORTED_MODULE_3__.TabContent, {
+                active: activeTab,
+                tab: "events",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+                  children: "Events"
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Tabs__WEBPACK_IMPORTED_MODULE_3__.TabContent, {
+                active: activeTab,
+                tab: "second",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+                  children: "Second"
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Tabs__WEBPACK_IMPORTED_MODULE_3__.TabContent, {
+                active: activeTab,
+                tab: "third",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+                  children: "Third"
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Tabs__WEBPACK_IMPORTED_MODULE_3__.TabContent, {
+                active: activeTab,
+                tab: "fourth",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+                  children: "Fourth"
+                })
+              })]
+            })
+          })
+        })
+      })
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Show);
 
 /***/ }),
 
@@ -59600,6 +59796,8 @@ var map = {
 	"./Competitions/Edit.js": "./resources/js/Pages/Competitions/Edit.js",
 	"./Competitions/Index": "./resources/js/Pages/Competitions/Index.js",
 	"./Competitions/Index.js": "./resources/js/Pages/Competitions/Index.js",
+	"./Competitions/Show": "./resources/js/Pages/Competitions/Show.js",
+	"./Competitions/Show.js": "./resources/js/Pages/Competitions/Show.js",
 	"./Dashboard": "./resources/js/Pages/Dashboard.js",
 	"./Dashboard.js": "./resources/js/Pages/Dashboard.js",
 	"./Swimmers/Create": "./resources/js/Pages/Swimmers/Create.js",

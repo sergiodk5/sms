@@ -18,6 +18,7 @@ class CreateCompetitionsTable extends Migration
             $table->string('title');
             $table->date('date_start');
             $table->date('date_end');
+            $table->string('location')->nullable();
             $table->timestamps();
         });
     }

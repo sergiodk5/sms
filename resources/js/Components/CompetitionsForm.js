@@ -4,6 +4,7 @@ const CompetitionsForm = ({
     title,
     date_start,
     date_end,
+    location,
     submit,
     setData,
     buttonName,
@@ -35,7 +36,7 @@ const CompetitionsForm = ({
                             <div className="shadow overflow-hidden sm:rounded-md">
                                 <div className="px-4 py-5 bg-white sm:p-6">
                                     <div className="grid grid-cols-12 gap-6">
-                                        <div className="col-span-12 sm:col-span-6">
+                                        <div className="col-span-12">
                                             <label
                                                 htmlFor="title"
                                                 className="block text-sm font-medium text-gray-700"
@@ -53,7 +54,25 @@ const CompetitionsForm = ({
                                             />
                                         </div>
 
-                                        <div className="col-span-12 sm:col-span-3">
+                                        <div className="col-span-12 sm:col-span-4">
+                                            <label
+                                                htmlFor="location"
+                                                className="block text-sm font-medium text-gray-700"
+                                            >
+                                                Location
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name="location"
+                                                id="location"
+                                                autoComplete="competition-location"
+                                                value={location}
+                                                onChange={onHandleChange}
+                                                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                            />
+                                        </div>
+
+                                        <div className="col-span-12 sm:col-span-4">
                                             <label
                                                 htmlFor="date_start"
                                                 className="block text-sm font-medium text-gray-700"
@@ -71,7 +90,7 @@ const CompetitionsForm = ({
                                             />
                                         </div>
 
-                                        <div className="col-span-12 sm:col-span-3">
+                                        <div className="col-span-12 sm:col-span-4">
                                             <label
                                                 htmlFor="date_end"
                                                 className="block text-sm font-medium text-gray-700"
@@ -97,13 +116,6 @@ const CompetitionsForm = ({
                                             : "text-right"
                                     }`}
                                 >
-                                    <button
-                                        type="submit"
-                                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                    >
-                                        {buttonName}
-                                    </button>
-
                                     {hasDelete && (
                                         <button
                                             onClick={handleDelete}
@@ -113,6 +125,13 @@ const CompetitionsForm = ({
                                             Delete
                                         </button>
                                     )}
+
+                                    <button
+                                        type="submit"
+                                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    >
+                                        {buttonName}
+                                    </button>
                                 </div>
                             </div>
                         </form>

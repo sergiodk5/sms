@@ -35,6 +35,7 @@ class CompetitionsController extends Controller
             'title'      => $request->title,
             'date_start' => $request->date_start,
             'date_end'   => $request->date_end,
+            'location'   => $request->location,
         ]);
 
         return Redirect::route('dashboard.competitions')->with('status', 'Competition created.');
@@ -42,8 +43,8 @@ class CompetitionsController extends Controller
 
     public function show(Competition $competition): InertiaResponse
     {
-        return Inertia::render('Competitions/View', [
-            'competition' => $competition,
+        return Inertia::render('Competitions/Show', [
+            'competition' => $competition->load('events'),
             'status' => session('status'),
         ]);
     }
@@ -67,6 +68,7 @@ class CompetitionsController extends Controller
         $competition->title      = $request->title;
         $competition->date_start = $request->date_start;
         $competition->date_end   = $request->date_end;
+        $competition->location   = $request->location;
 
         $competition->update();
 

@@ -9,6 +9,7 @@ const Create = (props) => {
         title: "",
         date_start: "",
         date_end: "",
+        location: "",
     });
 
     const submit = (e) => {
@@ -35,6 +36,7 @@ const Create = (props) => {
                 title={data.title}
                 date_start={data.date_start}
                 date_end={data.date_end}
+                location={data.location}
                 submit={submit}
                 setData={setData}
                 buttonName="Create"

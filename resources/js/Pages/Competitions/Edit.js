@@ -15,6 +15,7 @@ const Edit = (props) => {
         title: props.competition.title || "",
         date_start: props.competition.date_start || "",
         date_end: props.competition.date_end || "",
+        location: props.competition.location || "",
     });
 
     const submit = (e) => {
@@ -51,6 +52,7 @@ const Edit = (props) => {
                 title={data.title}
                 date_start={data.date_start}
                 date_end={data.date_end}
+                location={data.location}
                 submit={submit}
                 setData={setData}
                 buttonName="Update"

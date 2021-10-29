@@ -11,7 +11,7 @@ class Competition extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'date_start', 'date_end'];
+    protected $fillable = ['title', 'date_start', 'date_end', 'location'];
 
     public function events(): BelongsToMany
     {
