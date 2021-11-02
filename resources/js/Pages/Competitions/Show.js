@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react'
 import Authenticated from "@/Layouts/Authenticated";
 import { Head, Link } from "@inertiajs/inertia-react";
 import { TabList, TabContent } from "@/Components/Tabs";
+import Events from '@/Components/competitions/Events';
+import Information from '@/Components/competitions/Information';
 
 
 
 const Show = (props) => {
-    const [activeTab, setActiveTab] = useState('events')
+    const [activeTab, setActiveTab] = useState("info");
 
-    console.log(props.competition)
+    // console.log(props.competition)
 
     const dateString = (d) => {
         const ev = new Date(d)
@@ -35,41 +37,23 @@ const Show = (props) => {
                             <div className="px-4 py-5 sm:p-6">
                                 <ul className="list-reset flex border-b">
                                     <TabList
+                                        name="info"
+                                        setActive={setActiveTab}
+                                        title="Information"
+                                        active={activeTab}
+                                    />
+                                    <TabList
                                         name="events"
                                         setActive={setActiveTab}
                                         title="Events"
                                         active={activeTab}
                                     />
-                                    <TabList
-                                        name="second"
-                                        setActive={setActiveTab}
-                                        title="Second"
-                                        active={activeTab}
-                                    />
-                                    <TabList
-                                        name="third"
-                                        setActive={setActiveTab}
-                                        title="Third"
-                                        active={activeTab}
-                                    />
-                                    <TabList
-                                        name="forth"
-                                        setActive={setActiveTab}
-                                        title="Forth"
-                                        active={activeTab}
-                                    />
                                 </ul>
+                                <TabContent active={activeTab} tab="info">
+                                    <Information cmp={props.competition} />
+                                </TabContent>
                                 <TabContent active={activeTab} tab="events">
-                                    <h1>Events</h1>
-                                </TabContent>
-                                <TabContent active={activeTab} tab="second">
-                                    <h1>Second</h1>
-                                </TabContent>
-                                <TabContent active={activeTab} tab="third">
-                                    <h1>Third</h1>
-                                </TabContent>
-                                <TabContent active={activeTab} tab="fourth">
-                                    <h1>Fourth</h1>
+                                    <Events events={props.competition.events} />
                                 </TabContent>
                             </div>
                         </div>

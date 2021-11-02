@@ -480,7 +480,7 @@ export default function Index(props) {
                                                                     }
                                                                 </div>
                                                             </td>
-                                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                            <td className="px-6 py-4 text-sm text-gray-500 max-w-sm">
                                                                 {
                                                                     swimmer.address
                                                                 }
