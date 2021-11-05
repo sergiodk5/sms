@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Event;
+use App\Models\Race;
 use Illuminate\Database\Seeder;
 
-class EventsTableSeeder extends Seeder
+class RacesTableSeeder extends Seeder
 {
     // https://www.topendsports.com/events/summer/sports/swimming.htm
 
@@ -56,7 +56,7 @@ class EventsTableSeeder extends Seeder
         ];
 
         foreach ($races as $race) {
-            Event::create([
+            Race::create([
                 'title' => $race['title'],
                 'gender' => $race['gender'],
             ]);

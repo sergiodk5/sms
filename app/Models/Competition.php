@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Competition extends Model
 {
@@ -13,13 +13,13 @@ class Competition extends Model
 
     protected $fillable = ['title', 'date_start', 'date_end', 'location'];
 
-    public function events(): BelongsToMany
+    public function events(): HasMany
     {
-        return $this->belongsToMany(Event::class)->as('races')->withPivot('date');
+        return $this->hasMany(Event::class);
     }
 
-    public function participants(): HasManyThrough
+    public function races(): BelongsToMany
     {
-        return $this->hasManyThrough(Participant::class, Event::class);
+        return $this->belongsToMany(Race::class, 'events', 'competition_id', 'race_id')->as('event')->withPivot('date');
     }
 }

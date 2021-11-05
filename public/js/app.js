@@ -3953,16 +3953,16 @@ var Events = function Events(_ref) {
                 return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
                     className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500",
-                    children: evt.title
+                    children: evt.race.title
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
                     className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500",
-                    children: 1 === evt.gender ? 'Men' : 2 === evt.gender ? 'Women' : 'Mixed'
+                    children: 1 === evt.race.gender ? "Men" : 2 === evt.race.gender ? "Women" : "Mixed"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
                     className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500",
-                    children: "TODO: Count Athletes"
+                    children: evt.swimmers.length
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
                     className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500",
-                    children: evt.races.date
+                    children: evt.date
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
                     className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("svg", {

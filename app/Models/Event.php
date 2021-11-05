@@ -4,21 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Event extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'gender'];
+    protected $fillable = ['competition_id', 'race_id', 'date'];
 
-    public function competitions(): BelongsToMany
+    // protected $with = ['race'];
+
+    public function competition(): BelongsTo
     {
-        return $this->belongsToMany(Competition::class)->as('race')->wherePivot('date');
+        return $this->belongsTo(Competition::class);
+    }
+
+    public function race(): BelongsTo
+    {
+        return $this->belongsTo(Race::class);
     }
 
     public function swimmers(): BelongsToMany
     {
-        return $this->belongsToMany(Swimmer::class)->as('participation')->withPivot('rnk', 'total');
+        return $this->belongsToMany(Swimmer::class)->as('participations')->withPivot('rnk', 'total');
     }
 }

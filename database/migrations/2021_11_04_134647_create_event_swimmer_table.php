@@ -17,11 +17,14 @@ class CreateEventSwimmerTable extends Migration
     {
         Schema::create('event_swimmer', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Swimmer::class)->onDelete('cascade');
             $table->foreignIdFor(Event::class)->onDelete('cascade');
+            $table->foreignIdFor(Swimmer::class)->onDelete('cascade');
             $table->string('rnk')->nullable();
             $table->string('total')->nullable();
             $table->timestamps();
+
+            $table->foreign('event_id')->references('id')->on('events');
+            $table->foreign('swimmer_id')->references('id')->on('swimmers');
         });
     }
 

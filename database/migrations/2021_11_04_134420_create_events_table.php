@@ -1,12 +1,12 @@
 <?php
 
 use App\Models\Competition;
-use App\Models\Event;
+use App\Models\Race;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCompetitionEventTable extends Migration
+class CreateEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,12 +15,15 @@ class CreateCompetitionEventTable extends Migration
      */
     public function up()
     {
-        Schema::create('competition_event', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Competition::class);
-            $table->foreignIdFor(Event::class);
+            $table->foreignIdFor(Race::class);
             $table->dateTime('date')->nullable();
             $table->timestamps();
+
+            $table->foreign('competition_id')->references('id')->on('competitions');
+            $table->foreign('race_id')->references('id')->on('races');
         });
     }
 
@@ -31,6 +34,6 @@ class CreateCompetitionEventTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('competition_event');
+        Schema::dropIfExists('events');
     }
 }

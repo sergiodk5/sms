@@ -44,7 +44,7 @@ class CompetitionsController extends Controller
     public function show(Competition $competition): InertiaResponse
     {
         return Inertia::render('Competitions/Show', [
-            'competition' => $competition->load('events'),
+            'competition' => $competition->load(['events', 'events.race', 'events.swimmers']),
             'status' => session('status'),
         ]);
     }

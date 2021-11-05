@@ -50,16 +50,20 @@ const Events = ({ events }) => {
                                     {events.map((evt, index) => (
                                         <tr key={index}>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {evt.title}
+                                                {evt.race.title}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {1 === evt.gender ? 'Men' : (2 === evt.gender ? 'Women' : 'Mixed')}
+                                                {1 === evt.race.gender
+                                                    ? "Men"
+                                                    : 2 === evt.race.gender
+                                                    ? "Women"
+                                                    : "Mixed"}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                TODO: Count Athletes
+                                                {evt.swimmers.length}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {evt.races.date}
+                                                {evt.date}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                 <svg

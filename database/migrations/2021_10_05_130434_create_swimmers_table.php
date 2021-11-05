@@ -27,9 +27,11 @@ class CreateSwimmersTable extends Migration
             $table->boolean('gender');
             $table->string('photo')->nullable();
             $table->string('register_number')->unique()->nullable();
-            $table->foreignIdFor(Group::class)->nullable()->constrained();
+            $table->unsignedBigInteger('group_id')->nullable()->constrained();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('group_id')->references('id')->on('groups');
         });
     }
 

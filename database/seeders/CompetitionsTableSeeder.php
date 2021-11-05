@@ -22,23 +22,23 @@ class CompetitionsTableSeeder extends Seeder
                 'location'   => 'GER, Germany, Berlin',
                 'events'     => array(
                     array(
-                        'event_id' => 2,
+                        'race_id' => 2,
                         'date'     => '2021-10-01 09:00:00',
                     ),
                     array(
-                        'event_id' => 13,
+                        'race_id' => 13,
                         'date'     => '2021-10-01 17:00:00',
                     ),
                     array(
-                        'event_id' => 17,
+                        'race_id' => 17,
                         'date'     => '2021-10-02 09:00:00',
                     ),
                     array(
-                        'event_id' => 21,
+                        'race_id' => 21,
                         'date'     => '2021-10-02 17:00:00',
                     ),
                     array(
-                        'event_id' => 25,
+                        'race_id' => 25,
                         'date'     => '2021-10-03 09:00:00',
                     ),
                 ),
@@ -50,23 +50,23 @@ class CompetitionsTableSeeder extends Seeder
                 'location'   => 'HUN, Hungary, Budapest',
                 'events'     => array(
                     array(
-                        'event_id' => 2,
+                        'race_id' => 2,
                         'date'     => '2021-10-07 09:00:00',
                     ),
                     array(
-                        'event_id' => 13,
+                        'race_id' => 13,
                         'date'     => '2021-10-07 17:00:00',
                     ),
                     array(
-                        'event_id' => 17,
+                        'race_id' => 17,
                         'date'     => '2021-10-08 09:00:00',
                     ),
                     array(
-                        'event_id' => 21,
+                        'race_id' => 21,
                         'date'     => '2021-10-08 17:00:00',
                     ),
                     array(
-                        'event_id' => 25,
+                        'race_id' => 25,
                         'date'     => '2021-10-09 09:00:00',
                     ),
                 ),
@@ -78,23 +78,23 @@ class CompetitionsTableSeeder extends Seeder
                 'location'   => 'QAT, Qatar, Doha',
                 'events'     => array(
                     array(
-                        'event_id' => 2,
+                        'race_id' => 2,
                         'date'     => '2021-10-21 09:00:00',
                     ),
                     array(
-                        'event_id' => 13,
+                        'race_id' => 13,
                         'date'     => '2021-10-21 17:00:00',
                     ),
                     array(
-                        'event_id' => 17,
+                        'race_id' => 17,
                         'date'     => '2021-10-22 09:00:00',
                     ),
                     array(
-                        'event_id' => 21,
+                        'race_id' => 21,
                         'date'     => '2021-10-22 17:00:00',
                     ),
                     array(
-                        'event_id' => 25,
+                        'race_id' => 25,
                         'date'     => '2021-10-23 09:00:00',
                     ),
                 ),
@@ -106,23 +106,23 @@ class CompetitionsTableSeeder extends Seeder
                 'location'   => 'RUS, Russian Federation, Kazan',
                 'events'     => array(
                     array(
-                        'event_id' => 2,
+                        'race_id' => 2,
                         'date'     => '2021-10-28 09:00:00',
                     ),
                     array(
-                        'event_id' => 13,
+                        'race_id' => 13,
                         'date'     => '2021-10-28 17:00:00',
                     ),
                     array(
-                        'event_id' => 17,
+                        'race_id' => 17,
                         'date'     => '2021-10-29 09:00:00',
                     ),
                     array(
-                        'event_id' => 21,
+                        'race_id' => 21,
                         'date'     => '2021-10-29 17:00:00',
                     ),
                     array(
-                        'event_id' => 25,
+                        'race_id' => 25,
                         'date'     => '2021-10-30 09:00:00',
                     ),
                 ),
@@ -134,23 +134,23 @@ class CompetitionsTableSeeder extends Seeder
                 'location'   => 'UAE, United Arab Emirates, Abu Dhabi',
                 'events'     => array(
                     array(
-                        'event_id' => 2,
+                        'race_id' => 2,
                         'date'     => '2021-10-16 09:00:00',
                     ),
                     array(
-                        'event_id' => 13,
+                        'race_id' => 13,
                         'date'     => '2021-10-17 17:00:00',
                     ),
                     array(
-                        'event_id' => 17,
+                        'race_id' => 17,
                         'date'     => '2021-10-18 09:00:00',
                     ),
                     array(
-                        'event_id' => 21,
+                        'race_id' => 21,
                         'date'     => '2021-10-19 17:00:00',
                     ),
                     array(
-                        'event_id' => 25,
+                        'race_id' => 25,
                         'date'     => '2021-10-21 09:00:00',
                     ),
                 ),
@@ -165,8 +165,13 @@ class CompetitionsTableSeeder extends Seeder
                 'location'   => $comp['location'],
             ]);
 
-            foreach ($comp['events'] as $event) {
-                $cmp->events()->attach($event['event_id'], ['date' => $event['date']]);
+            if (!empty($comp['events'])) {
+                foreach ($comp['events'] as $event) {
+                    $cmp->events()->create([
+                        'race_id' => $event['race_id'],
+                        'date'    => $event['date'],
+                    ]);
+                }
             }
         }
     }
