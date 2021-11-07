@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 mix.js("resources/js/app.js", "public/js")
     .react()
@@ -9,7 +9,7 @@ mix.js("resources/js/app.js", "public/js")
     ])
     .webpackConfig(require("./webpack.config"))
     .browserSync({
-        proxy: "http://127.0.0.1:8000/",
+        proxy: "http://localhost:8000/",
         open: false,
     });
 

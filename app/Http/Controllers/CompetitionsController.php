@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Competition;
+use App\Models\Race;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -43,8 +44,10 @@ class CompetitionsController extends Controller
 
     public function show(Competition $competition): InertiaResponse
     {
+        $races = Race::all();
         return Inertia::render('Competitions/Show', [
             'competition' => $competition->load(['events', 'events.race', 'events.swimmers']),
+            'races' => $races,
             'status' => session('status'),
         ]);
     }
